@@ -1,0 +1,7 @@
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+.App {
+  text-align: center;
+}

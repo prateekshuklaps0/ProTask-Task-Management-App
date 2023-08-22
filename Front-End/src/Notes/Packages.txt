@@ -1,0 +1,6 @@
+Axios : npm install Axios
+React Router Dom : npm install react-router-dom
+Chakra UI / Framer Motion / Emotion : npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+React Icons : npm install react-icons --save
+Styled-Components : npm i styled-components
+
