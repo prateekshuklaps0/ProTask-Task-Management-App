@@ -29,18 +29,6 @@ export const TopInnerCont = css`
   @media (max-width: 480px) {
   }
 `;
-export const ImageCss = css`
-  width: 100px;
-  height: 100%;
-  border: 1px solid red;
-
-  @media (max-width: 992px) {
-  }
-  @media (max-width: 768px) {
-  }
-  @media (max-width: 480px) {
-  }
-`;
 
 /* 
 
