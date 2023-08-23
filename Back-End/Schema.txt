@@ -1,0 +1,34 @@
+const userSchema = {
+  name: "string",
+  email: "string",
+  pass: "string",
+};
+
+const projectSchema = {
+  title: "string",
+  userId: "String",
+  discription: "string",
+};
+
+const taskSchema = {
+  title: "string",
+  discription: "string",
+  status: "string",
+  projectID: "string",
+  userId: "string",
+  dueDate: "string",
+};
+
+const people = {
+  userId: "string",
+  email: "string",
+  userName: "string",
+  projectId: "string",
+};
+
+const PrivateNote = {
+  userId: "string",
+  title: "string",
+  userName: "string",
+  body: "string",
+};
