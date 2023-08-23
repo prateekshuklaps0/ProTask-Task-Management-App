@@ -1,8 +1,15 @@
 Axios : npm install axios
+
 React Router Dom : npm install react-router-dom
+
 Prop-Types : npm i prop-types
+
 Redux / React-Redux / Thunk : npm install redux react-redux redux-thunk
+
 Chakra UI / Framer Motion / Emotion : npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+
 React Icons : npm install react-icons --save
+
 Styled-Components : npm i styled-components
 
+React-Scroll : npm i react-scroll

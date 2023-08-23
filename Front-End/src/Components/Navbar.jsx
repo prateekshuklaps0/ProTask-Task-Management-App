@@ -9,6 +9,9 @@ const Navbar = () => {
     <Box css={css.OuterBox}>
       <Box css={css.TopInnerCont}>
         <Logo fontSize={["24px", "24px", "26px"]} />
+        <Box>
+          <Navlink></Navlink>
+        </Box>
       </Box>
     </Box>
   );

@@ -6,6 +6,7 @@ export const OuterBox = css`
   top: 0;
   z-index: 1000;
   background-color: white;
+  border-bottom: 1px solid red;
 
   @media (max-width: 992px) {
   }
@@ -16,7 +17,7 @@ export const OuterBox = css`
 `;
 export const TopInnerCont = css`
   width: 85%;
-  height: 60px;
+  height: 55px;
   margin: auto;
   display: flex;
   align-items: center;
