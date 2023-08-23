@@ -7,6 +7,7 @@ import PageNotFound from "./Pages/PageNotFound";
 
 import SideBar from "./Components/SideBar";
 import { Template } from "./Components/Template";
+import Navbar from "./Components/Navbar";
 
 
 function App() {

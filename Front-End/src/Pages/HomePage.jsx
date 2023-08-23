@@ -7,7 +7,7 @@ import Navbar from "../Components/Navbar";
 const HomePage = () => {
   return (
     <Box css={css.OuterBox}>
-      <Navbar />
+      {/* <Navbar /> */}
       HomePage
     </Box>
   );
