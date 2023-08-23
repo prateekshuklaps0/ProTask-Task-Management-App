@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import PropTypes from "prop-types";
 import { Text, Image, Link } from "@chakra-ui/react";
 
-import Img from "../../public/LogoB.png";
+import Img from "../Images/Logo.png";
 
 const Logo = ({ fontSize }) => {
   return (
