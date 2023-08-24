@@ -6,29 +6,21 @@ const userSchema = {
 
 const projectSchema = {
   title: "string",
-  userId: "String",
   discription: "string",
+  note:"string", // Optional value
+  userId: "String",
 };
 
 const taskSchema = {
   title: "string",
   discription: "string",
   status: "string",
+  dueDate: "string",
+  assignedTo:"string",
   projectID: "string",
   userId: "string",
-  dueDate: "string",
 };
 
-const people = {
-  userId: "string",
-  email: "string",
-  userName: "string",
-  projectId: "string",
-};
 
-const PrivateNote = {
-  userId: "string",
-  title: "string",
-  userName: "string",
-  body: "string",
-};
+
+
