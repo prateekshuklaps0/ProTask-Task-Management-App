@@ -3,8 +3,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
+// Routes Import
 const { userRoute } = require("./Routes/userRoutes");
 const { projectRoute } = require("./Routes/projectRoutes");
+const { taskRoute } = require("./Routes/taskRoutes");
 
 const app = express();
 
@@ -21,8 +23,10 @@ app.get("/", async (req, res) => {
   }
 });
 
+// Other Routes
 app.use("/users", userRoute);
 app.use("/project", projectRoute);
+app.use("/tasks", taskRoute);
 
 app.listen(8080, async () => {
   try {
