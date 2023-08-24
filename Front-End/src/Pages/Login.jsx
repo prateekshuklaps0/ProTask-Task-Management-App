@@ -23,7 +23,7 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const navigate=useNavigate()
+  const navigate = useNavigate()
 
   const submitLogin = () => {
     const payload = {
@@ -32,11 +32,11 @@ export const Login = () => {
     };
 
     axios.post(`${process.env.REACT_APP_SERVER}/users/login`, payload)
-      .then((res) =>{
-         alert(res.data.msg);
-         localStorage.setItem("frontendtoken",res.data.token)
-         navigate("/")
-        })
+      .then((res) => {
+        alert(res.data.msg);
+        localStorage.setItem("frontendtoken", res.data.token)
+        navigate("/")
+      })
       .catch((err) => console.log(err));
 
     setEmail("");
@@ -90,8 +90,8 @@ export const Login = () => {
                 />
                 <InputRightElement h={"full"}>
                   <Button variant={"ghost"} onClick={() =>
-                        setShowPassword((showPassword) => !showPassword)
-                      }>
+                    setShowPassword((showPassword) => !showPassword)
+                  }>
                     {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                   </Button>
                 </InputRightElement>
