@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const { userRoute } = require("./Routes/userRoutes");
+const { projectRoute } = require("./Routes/projectRoutes");
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.get("/", async (req, res) => {
 });
 
 app.use("/users", userRoute);
+app.use("/project", projectRoute);
 
 app.listen(8080, async () => {
   try {

@@ -13,12 +13,12 @@ userRoute.post("/signup", async (req, res) => {
 
     const found = await UserModel.findOne({ email });
     if (found) {
-      return res.status(200).json({ message: "Email Already Registered!" });
+      return res.status(400).json({ message: "Email Already Registered!" });
     }
 
     const hashed = await bcrypt.hash(pass, 10);
 
-    const UserData = await UserModel({ ...req.body, pass: hashed });
+    const UserData = UserModel({ ...req.body, pass: hashed });
     await UserData.save();
 
     res.status(201).json({
@@ -38,17 +38,17 @@ userRoute.post("/login", async (req, res) => {
 
     const found = await UserModel.findOne({ email });
     if (!found) {
-      return res.status(200).json({ msg: "User Doesn't Exists!" });
+      return res.status(404).json({ msg: "User Doesn't Exists!" });
     }
 
     const Matched = await bcrypt.compare(pass, found.pass);
     if (!Matched) {
-      return res.status(200).json({ msg: "Wrong Password!" });
+      return res.status(401).json({ msg: "Wrong Password!" });
     }
 
     const token = jwt.sign({ id: found._id }, "pro-task");
 
-    res.status(201).json({
+    res.status(200).json({
       msg: "User LogIn Succesfull",
       token,
     });
@@ -63,13 +63,13 @@ userRoute.post("/logout", async (req, res) => {
   try {
     const userToken = req.headers.authorization;
     if (!userToken) {
-      return res.status(200).json({ msg: "Provide User Token!" });
+      return res.status(401).json({ msg: "Provide User Token!" });
     }
 
     const BlacklistedToken = BlackListModel({ token: userToken });
     await BlacklistedToken.save();
 
-    res.status(201).json({
+    res.status(200).json({
       msg: "User Logged Out!",
       BlacklistedToken: userToken,
     });
