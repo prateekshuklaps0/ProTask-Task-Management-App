@@ -8,6 +8,7 @@ import PageNotFound from "./Pages/PageNotFound";
 import SideBar from "./Components/SideBar";
 import { Template } from "./Components/Template";
 import Navbar from "./Components/Navbar";
+import AfterLoginPage from "./Pages/AfterLoginPage";
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
     <Box className="App">
 
       <Navbar />
-      <SideBar />
+      {/* <SideBar /> */}
 
 
       {/* Routes */}
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/temp" element={<Template />} />
         <Route path="*" element={<PageNotFound />} />
+        <Route path="/home" element={<AfterLoginPage />} />
       </Routes>
     </Box>
   );
