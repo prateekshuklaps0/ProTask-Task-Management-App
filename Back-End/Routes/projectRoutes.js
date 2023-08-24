@@ -49,7 +49,7 @@ projectRoute.patch("/update/:projectId", Auth, async (req, res) => {
     const FoundAndUpdate = await ProjectModel.findByIdAndUpdate(
       projectId,
       req.body,
-      { new: true, runValidators: true }
+      { new: true }
     );
 
     if (!FoundAndUpdate) {
@@ -68,9 +68,9 @@ projectRoute.delete("/delete/:projectId", Auth, async (req, res) => {
   try {
     const { projectId } = req.params;
 
-    const FoundAndUpdate = await ProjectModel.findByIdAndDelete(projectId);
+    const FoundAndDelete = await ProjectModel.findByIdAndDelete(projectId);
 
-    if (!FoundAndUpdate) {
+    if (!FoundAndDelete) {
       return res.status(204).json({ msg: "Project not found" });
     }
 
