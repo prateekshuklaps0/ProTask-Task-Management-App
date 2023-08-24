@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+const { Auth } = require("../Middlewares/Auth");
 const { UserModel, BlackListModel } = require("../Models/userModel");
 
 const userRoute = express.Router();
@@ -76,6 +77,36 @@ userRoute.post("/logout", async (req, res) => {
   } catch (error) {
     console.error("LogOut Error :", error);
     res.status(500).json({ msg: "LogOut Error" });
+  }
+});
+
+// Get All Users List - for Task Assigning Purpose - Authenticated Route
+userRoute.get("/", Auth, async (req, res) => {
+  try {
+    const AllUsers = await UserModel.find();
+
+    res.status(201).json(AllUsers);
+  } catch (error) {
+    console.error("Getting All Users Error :", error);
+    res.status(500).json({ msg: "Getting All Users Error" });
+  }
+});
+
+// Get a Single User Data  Authenticated Route
+userRoute.get("/single/:userId", Auth, async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    if (!userId) {
+      return res.status(401).json({ msg: "Invalid userId params." });
+    }
+
+    const User = await UserModel.findOne({ _id: userId });
+
+    res.status(201).json(User);
+  } catch (error) {
+    console.error("Getting All Users Error :", error);
+    res.status(500).json({ msg: "Getting All Users Error" });
   }
 });
 
