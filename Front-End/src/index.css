@@ -10,3 +10,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.drawer-transition {
+  transition: transform 0.3s ease-in-out;
+}

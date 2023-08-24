@@ -34,16 +34,15 @@ const SideBar = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="flex h-screen fixed text-sm">
+    <div className="hidden sm:hidden md:hidden lg:flex xl:flex h-screen text-sm ">
       <div
         className={`${
           isOpen ? "w-48" : "w-0"
-        } bg-gray-50 min-h-screen border-r border-t overflow-hidden transition-width duration-500`}
+        } bg-gray-50 bg-fixed min-h-screen border-r border-t overflow-hidden transition-width duration-500`}
       >
-        <div className="flex items-center justify-between p-2 "></div>
-        <div className="p-2">
+        <div className="p-2 fixed">
           <ul className="space-y-2">
-            <li className="flex items-center space-x-2 pl-2 pt-1 pr-1 pb-1 box-border cursor-pointer hover:bg-slate-100 rounded-md active:bg-slate-50">
+            <li className="flex items-center space-x-2 pl-2 pt-1 pr-1 pb-1 box-border cursor-pointer hover:bg-slate-100  rounded-md active:bg-slate-50">
               <BiHomeAlt2 fontSize={"16px"} />
               <span>Home</span>
             </li>
@@ -56,7 +55,9 @@ const SideBar = () => {
               <span>Inbox</span>
             </li>
             <li className="border-t mt-4 pt-4 flex items-center space-x-8">
-              <span className="text-gray-600 font-semibold ml-2">Projects </span>
+              <span className="text-gray-600 font-semibold ml-2">
+                Projects{" "}
+              </span>
               <MdAddBox fontWeight={"bold"} cursor="pointer" color="gray" />
             </li>
             <li className="flex items-center space-x-2 pl-2 pt-1 pr-1 pb-1 box-border cursor-pointer hover:bg-slate-100 rounded-md active:bg-slate-50">
@@ -74,9 +75,9 @@ const SideBar = () => {
           </ul>
         </div>
       </div>
-      <div className="flex-1 p-8">
+      {/* <div className="flex-1 p-8">
         <button onClick={toggleSidebar}>Toggle Sidebar</button>
-      </div>
+      </div> */}
     </div>
     // <Box>
     //   <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>

@@ -2,13 +2,16 @@ import * as css from "../Styles/NavbarCss";
 import { Link as ScrollLink } from "react-scroll";
 import { useEffect, useState } from "react";
 import { Box, Text, Image, Center, Button } from "@chakra-ui/react";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 import Logo from "./Logo";
+import SideBar from "./SideBar";
 
 const Navbar = () => {
   const ScrollOffset = false ? -90 : false ? -100 : -120;
+
   return (
-    <Box css={css.OuterBox}>
+    <Box css={css.OuterBox} position="sticky">
       <Box css={css.TopInnerCont}>
         <Logo fontSize={["24px", "24px", "26px"]} />
 
