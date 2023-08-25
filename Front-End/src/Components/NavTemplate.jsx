@@ -11,9 +11,9 @@ export const NavTemplate = () => {
 
     return (
         <VStack >
-            <Box w={{ base: "400px", sm: "350px", md: "650px", lg: "800px", xl: "1000px" }}>
-                {/* { base: "400px", sm: "350px", md: "600px", lg: "700px", xl: "800px" } */}
-                <Box display={"flex"} justifyContent={'space-between'} w={{ base: "400px", sm: "350px", md: "650px", lg: "800px", xl: "1000px" }}>
+            <Box w={"full"}>
+
+                <Box display={"flex"} justifyContent={'space-between'} w={"full"}>
                     <HStack>
                         <Box w="40px" h="40px" ml={"20px"}>
                             <Image
@@ -27,7 +27,7 @@ export const NavTemplate = () => {
                         <Heading size={"md"} color="gray.700">PROJECT NAME</Heading>
                     </HStack>
                     <Box >
-                        <AvatarGroup size='md' max={2} mr={"20px"}>
+                        <AvatarGroup size='sm' max={2} mr={"20px"}>
                             <Avatar name='Ryan Florence' src='https://bit.ly/broken-link' />
                             <Avatar name='Segun Adebayo' src='https://bit.ly/broken-link' />
                             <Avatar name='Kent Dodds' src='https://bit.ly/broken-link' />
@@ -37,8 +37,8 @@ export const NavTemplate = () => {
                     </Box>
                 </Box>
             </Box>
-            <Box>
-                <Tabs variant='enclosed' defaultIndex={1} w={{ base: "400px", sm: "350px", md: "650px", lg: "800px", xl: "1000px" }}>
+            <Box w={"full"}>
+                <Tabs variant='enclosed' defaultIndex={1} >
                     <TabList>
                         <Tab>Overview</Tab>
                         <Tab>List</Tab>

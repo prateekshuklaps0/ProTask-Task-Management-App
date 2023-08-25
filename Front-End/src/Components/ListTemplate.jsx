@@ -4,7 +4,7 @@ import {
     ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { FaPlus, FaUserCircle } from "react-icons/fa";
+import { FaAngleRight, FaPlus, FaUserCircle } from "react-icons/fa";
 
 
 export const ListTemplate = () => {
@@ -102,7 +102,7 @@ export const ListTemplate = () => {
     }
 
     return (
-        <Box>
+        <Box w={"full"}>
             <Box>
                 <TableContainer>
                     <Table variant='simple'>
@@ -120,14 +120,8 @@ export const ListTemplate = () => {
                             <Tr _hover={{ backgroundColor: "#ECEFF1" }} color={'gray.600'}>
                                 <Td _hover={{ border: "1px solid #BDBDBD" }}>
                                     <HStack>
-                                        <Box w="20px" h="20px">
-                                            <Image
-                                                src={"https://minehub.com/wp-content/uploads/2023/07/Chevron.svg"}
-                                                alt=""
-                                                w={"100%"}
-                                                h={"100%"}
-                                                objectFit="contain"
-                                            />
+                                        <Box>
+                                            <FaAngleRight color='pink' size={"20px"} />
                                         </Box>
                                         <Box>
                                             Name
@@ -142,14 +136,8 @@ export const ListTemplate = () => {
                             <Tr _hover={{ backgroundColor: "#ECEFF1" }} color={'gray.600'}>
                                 <Td _hover={{ border: "1px solid #BDBDBD" }}>
                                     <HStack>
-                                        <Box w="20px" h="20px">
-                                            <Image
-                                                src={"https://minehub.com/wp-content/uploads/2023/07/Chevron.svg"}
-                                                alt=""
-                                                w={"100%"}
-                                                h={"100%"}
-                                                objectFit="contain"
-                                            />
+                                        <Box >
+                                            <FaAngleRight color='pink' size={"20px"} />
                                         </Box>
                                         <Box>
                                             Name
