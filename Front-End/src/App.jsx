@@ -15,14 +15,11 @@ import Home_2 from "./Pages/Home_2";
 import MyTasks from "./Pages/MyTasks";
 import Profile from "./Pages/Profile";
 
-
 function App() {
   return (
     <Box className="App">
-
       <Navbar />
       {/* <SideBar /> */}
-
 
       {/* Routes */}
       <Routes>
@@ -33,7 +30,6 @@ function App() {
         <Route path="/home" element={<Home_2 />} />
         <Route path="/task" element={<MyTasks />} />
         <Route path="/profile" element={<Profile />} />
-
       </Routes>
     </Box>
   );

@@ -1,11 +1,37 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 
 const { Auth } = require("../Middlewares/Auth");
 const { UserModel, BlackListModel } = require("../Models/userModel");
 
 const userRoute = express.Router();
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  host: "smtp.gmail.com",
+  auth: {
+    user: "harshittechi9@gmail.com",
+    pass: "xbtgiqyuzchtwpvv",
+  },
+});
+
+// transporter
+//   .sendMail({
+//     from: "harshittechi9@gmail.com",
+//     // to:"prateekshuklaps0@gmail.com",
+//     subject: "This is Harshit from backend",
+//     text: "Hey i am from Harshit backend application",
+//     text: `Your OTP for the password reset process is ${OtpNo}`,
+//   })
+//   .then(() => {
+//     console.log(`Mail sent sucessfully  ${OtpNo}`);
+//     console.log(OtpNo);
+//   })
+//   .catch(() => {
+//     console.log("Transporter Mail Error :", err);
+//   });
 
 // SignUp
 userRoute.post("/signup", async (req, res) => {
@@ -51,6 +77,7 @@ userRoute.post("/login", async (req, res) => {
 
     res.status(200).json({
       msg: "User LogIn Succesfull",
+      userDetails: found,
       token,
     });
   } catch (error) {
@@ -111,3 +138,12 @@ userRoute.get("/single/:userId", Auth, async (req, res) => {
 });
 
 module.exports = { userRoute };
+
+// Otp Generator
+function otpGenerator() {
+  let otp = "";
+  for (let i = 0; i < 6; i++) {
+    otp += Math.floor(Math.random() * 10);
+  }
+  return Number(otp);
+}
