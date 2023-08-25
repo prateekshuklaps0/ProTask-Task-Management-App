@@ -33,8 +33,6 @@ import {
 } from "@chakra-ui/react";
 import SideBar from "../Components/SideBar";
 
-
-
 const Home_2 = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [color, setColor] = useState(
@@ -91,7 +89,7 @@ const Home_2 = () => {
             </h2>
 
             <div className=" mt-3 pr-2">
-              <ul className="flex justify-evenly space-x-8 text-xs md:text-sm lg:text-xs xl:text-lg 2xl:text-sm  bg-white p-3 m-auto w-96 sm:w-96 md:w-2/3 lg:w-96 xl:w-1/2 2xl:w-96 rounded-3xl">
+              <ul className="flex justify-evenly space-x-8 text-xs md:text-sm lg:text-sm xl:text-lg 2xl:text-sm  bg-white p-3 m-auto w-96 sm:w-96 md:w-2/3 lg:w-2/3 xl:w-2/3 2xl:w-1/3 rounded-3xl">
                 <li className="cursor-pointer">My Month ▾ </li>
                 <li className="flex items-center space-x-1 cursor-pointer">
                   <BsCheckAll fontSize={"18px"} />{" "}
@@ -136,15 +134,15 @@ const Home_2 = () => {
                 <span>My Tasks</span> <BiLockAlt fontSize={"12px"} />
               </h1>
 
-              <Tabs position="relative" variant="unstyled" fontSize={"15px"}>
+              <Tabs position="relative" variant="unstyled" fontSize={"20px"}>
                 <TabList>
-                  <Tab fontSize={"12px"} fontWeight="semibold">
+                  <Tab fontSize={"15px"} fontWeight="semibold">
                     Upcoming
                   </Tab>
-                  <Tab fontSize={"12px"} fontWeight="semibold">
+                  <Tab fontSize={"15px"} fontWeight="semibold">
                     Overdue
                   </Tab>
-                  <Tab fontSize={"12px"} fontWeight="semibold">
+                  <Tab fontSize={"15px"} fontWeight="semibold">
                     Completed
                   </Tab>
                 </TabList>
@@ -187,17 +185,17 @@ const Home_2 = () => {
               <div className="grid grid-flow-row grid-cols-2 gap-5 place-items-center">
                 <div className="flex items-center space-x-2 mt-3">
                   <img src={project} className="w-9 rounded-lg" alt="" />
-                  <p className="font-medium text-sm">Project-1</p>
+                  <p className="font-medium text-md">Project-1</p>
                 </div>
 
                 <div className="flex items-center space-x-2 mt-3">
                   <img src={project} className="w-9 rounded-lg" alt="" />
-                  <p className="font-medium text-sm">Project-2</p>
+                  <p className="font-medium text-md">Project-2</p>
                 </div>
 
                 <div className="flex items-center space-x-2 mt-3">
                   <img src={project} className="w-9 rounded-lg" alt="" />
-                  <p className="font-medium text-sm">Project-3</p>
+                  <p className="font-medium text-md">Project-3</p>
                 </div>
               </div>
             </div>
@@ -208,7 +206,7 @@ const Home_2 = () => {
                 <span className="text-xs ">Frequent Collaborators ▾</span>
               </h1>
 
-              <div className="grid grid-flow-row grid-cols-2  mt-5 text-sm font-medium p-5 gap-6">
+              <div className="grid grid-flow-row grid-cols-2  mt-5 text-md font-medium p-5 gap-6">
                 <div className="flex items-center space-x-3">
                   <Avatar
                     size={"md"}
