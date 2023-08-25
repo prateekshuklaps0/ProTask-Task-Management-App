@@ -5,7 +5,7 @@ import Home_2 from "./Home_2";
 const AfterLoginPage = () => {
   return (
     <div className="flex ">
-      <div className="flex-none">
+      <div>
         <SideBar />
       </div>
 
