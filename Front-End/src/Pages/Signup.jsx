@@ -23,8 +23,8 @@ export const Signup = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [pass, setpass] = useState("");
+  const [showpass, setShowpass] = useState(false);
 
   const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ export const Signup = () => {
       email,
       phone,
       gender,
-      password,
+      pass,
     };
 
     axios.post(`${process.env.REACT_APP_SERVER}/users/register`, payload)
@@ -56,7 +56,7 @@ export const Signup = () => {
     setEmail("");
     setPhone("");
     setGender("")
-    setPassword("");
+    setpass("");
   };
 
 
@@ -110,7 +110,7 @@ export const Signup = () => {
               />
             </FormControl>
 
-            <FormControl id="gender" isRequired>
+            {/* <FormControl id="gender" isRequired>
               <FormLabel>Gender</FormLabel>
               <Select
                 value={gender}
@@ -121,7 +121,7 @@ export const Signup = () => {
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </Select>
-            </FormControl>
+            </FormControl> */}
 
             <FormControl id="phone" isRequired>
               <FormLabel>Phone Number</FormLabel>
@@ -133,20 +133,20 @@ export const Signup = () => {
               />
             </FormControl>
 
-            <FormControl id="password" isRequired>
+            <FormControl id="pass" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
                 <Input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  type={showpass ? "text" : "pass"}
+                  name="pass"
+                  value={pass}
+                  onChange={(e) => setpass(e.target.value)}
                 />
                 <InputRightElement h={"full"}>
                   <Button variant={"ghost"} onClick={() =>
-                    setShowPassword((showPassword) => !showPassword)
+                    setShowpass((showpass) => !showpass)
                   }>
-                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                    {showpass ? <ViewIcon /> : <ViewOffIcon />}
                   </Button>
                 </InputRightElement>
               </InputGroup>

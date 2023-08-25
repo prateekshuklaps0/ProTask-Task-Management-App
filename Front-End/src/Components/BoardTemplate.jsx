@@ -1,11 +1,13 @@
 import {
-    Box, HStack, Text, VStack, Image,
+    Box, HStack, Text, VStack, Image, InputGroup, Select, Textarea,
     FormLabel, FormControl, Input, useDisclosure, Button, Modal, ModalOverlay,
-    ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton
+    ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton,
+    Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, Stack,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { FaPlus, FaUserCircle, FaGripLines } from "react-icons/fa";
 import { useMediaQuery } from '@chakra-ui/react'
+import { TodoDrawer } from './TodoDrawer';
 
 
 const initData = {
@@ -21,10 +23,14 @@ export const BoardTemplate = () => {
     const [inProgresTask, setInProgresTask] = useState([]);
     const [formData, setFormData] = useState(initData);
     const [isSmallerThanBreakpoint] = useMediaQuery('(max-width: 768px)')
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+
+    const handletodo = () => {
+        todoDrawer()
+    }
 
     function addData() {
-
-        const { isOpen, onOpen, onClose } = useDisclosure()
 
         const handleChange = (e) => {
             setFormData({
@@ -93,27 +99,28 @@ export const BoardTemplate = () => {
         )
     }
 
+
     return (
-        <Box w={"100%"} p={"auto"}>
-            <Box display={isSmallerThanBreakpoint ? "block" : "flex"} p={"auto"} gap={"10px"}>
+        <Box p={"auto"} w={"full"} m={"auto"}>
+            <Box display={isSmallerThanBreakpoint ? "block" : "flex"} p={"auto"} gap={"20px"} m={"auto"}>
 
-                {/*================== To-do task ============{ base: "20%", sm: "150px", md: "300px", lg: "400px", xl: "500px" }*/}
+                {/*================== To-do task #FEF5F4  ============*/}
 
-                <Box borderRadius={"10px"} w={"30%"} backgroundColor={" #FEF5F4 "} p={"10px"}>
+                <Box borderRadius={"10px"} w={"30%"} backgroundColor={"#FAFAFA"} p={"10px"} >
                     <VStack>
-                        <Text color={"#F98068"} fontWeight={"bold"} >To do</Text>
+                        <Text color={"red.600"} fontWeight={"bold"}  >To do</Text>
 
                         <Box w={"95%"} >
                             <VStack>
                                 <Box m={"5px"} backgroundColor={"white"} p={"10px"} w={"95%"} borderRadius={"10px"}>
                                     <HStack>
-                                        <Text textAlign={"left"} color={"gray.400"}> task...</Text>
-                                        <Button>...</Button>
+                                        <Text textAlign={"left"} > task...</Text>
+                                        <Box >{TodoDrawer()}</Box>
                                     </HStack>
                                 </Box>
 
                             </VStack>
-                            <Box m={"5px"}>
+                            <Box m={"10px"}>
                                 <HStack>
                                     <Box>{addData("Add new task...")}</Box>
                                     <Text color={"gray.400"}>Add new task...</Text>
@@ -124,16 +131,16 @@ export const BoardTemplate = () => {
                     </VStack>
                 </Box >
 
-                {/*================== In progress task ============*/}
+                {/*================== In progress task  #EFF3FE============*/}
 
-                < Box borderRadius={"10px"} w={"30%"} backgroundColor={" #EFF3FE "} >
+                < Box borderRadius={"10px"} w={"30%"} p={"10px"} backgroundColor={"blue.100"} >
                     <VStack>
-                        <Text color={"#678FFF"} fontWeight={"bold"}>Doing</Text>
+                        <Text color={"blue.600"} fontWeight={"bold"}>Doing</Text>
                         <Box w={"95%"} >
                             <VStack>
-                                {/* <Box m={"5px"} backgroundColor={"white"} p={"10px"} w={"95%"} borderRadius={"10px"}>
-                                    <Text textAlign={"left"} color={"gray.400"}> task...</Text>
-                                </Box> */}
+                                <Box m={"5px"} backgroundColor={"white"} p={"10px"} w={"95%"} borderRadius={"10px"}>
+                                    <Text textAlign={"left"} > task...</Text>
+                                </Box>
 
                             </VStack>
                             <Box m={"10px"}>
@@ -146,16 +153,16 @@ export const BoardTemplate = () => {
                     </VStack>
                 </Box >
 
-                {/*================== completed task ============*/}
+                {/*================== completed task   #F0FEEF ============*/}
 
-                < Box borderRadius={"10px"} w={"30%"} backgroundColor={"  #F0FEEF  "} >
+                < Box borderRadius={"10px"} w={"30%"} p={"10px"} backgroundColor={"green.100"} >
                     <VStack>
-                        <Text color={"#5DAD57"} fontWeight={"bold"}>Done</Text>
+                        <Text color={"green.600"} fontWeight={"bold"}>Done</Text>
                         <Box w={"95%"} >
                             <VStack>
-                                {/* <Box m={"5px"} backgroundColor={"white"} p={"10px"} w={"95%"} borderRadius={"10px"}>
-                                    <Text textAlign={"left"} color={"gray.400"}> task...</Text>
-                                </Box> */}
+                                <Box m={"5px"} backgroundColor={"white"} p={"10px"} w={"95%"} borderRadius={"10px"}>
+                                    <Text textAlign={"left"} > task...</Text>
+                                </Box>
 
                             </VStack>
                             <Box m={"10px"}>

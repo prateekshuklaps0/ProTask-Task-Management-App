@@ -4,74 +4,77 @@ import {
     ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { FaPlus, FaUserCircle } from "react-icons/fa";
+import { FaAngleRight, FaPlus, FaUserCircle } from "react-icons/fa";
 
 
 export const ListTemplate = () => {
+  const initData = {
+    title: "",
+    description: "",
+    dueDate: "",
+  };
+  const [formData, setFormData] = useState(initData);
+  const [isHovered, setIsHovered] = useState(false);
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
 
-    const initData = {
-        title: "",
-        description: "",
-        dueDate: ""
-    }
-    const [formData, setFormData] = useState(initData);
-    const [isHovered, setIsHovered] = useState(false);
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
-    const handleMouseEnter = () => {
-        setIsHovered(true);
+  const showAllUsers = () => {
+    onClose();
+  };
+
+  function addData() {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const handleChange = (e) => {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value,
+      });
     };
 
-    const handleMouseLeave = () => {
-        setIsHovered(false);
+    console.log(formData);
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      onClose();
     };
 
-    const showAllUsers = () => {
-        onClose()
-    }
+    return (
+      <>
+        <Button onClick={onOpen}>
+          <FaPlus size={10} color="gray" />
+        </Button>
 
-    function addData() {
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader
+              textAlign={"center"}
+              color={"#E57373"}
+              fontWeight={"bold"}
+            >
+              {"ADD TASK"}
+            </ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <FormControl isRequired mb="15px">
+                <FormLabel color={"gray.600"}>Task Name</FormLabel>
+                <Input
+                  name="title"
+                  value={formData.title}
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="task"
+                />
+              </FormControl>
 
-        const { isOpen, onOpen, onClose } = useDisclosure()
-
-        const handleChange = (e) => {
-            setFormData({
-                ...formData,
-                [e.target.name]: e.target.value
-            })
-        }
-
-        console.log(formData)
-
-        const handleSubmit = (e) => {
-            e.preventDefault()
-            onClose()
-        }
-
-        return (
-            <>
-                <Button onClick={onOpen}>
-                    <FaPlus size={10} color="gray" />
-                </Button>
-
-
-                <Modal isOpen={isOpen} onClose={onClose} >
-                    <ModalOverlay />
-                    <ModalContent>
-                        <ModalHeader textAlign={'center'} color={"#E57373"} fontWeight={"bold"}>{"ADD TASK"}</ModalHeader>
-                        <ModalCloseButton />
-                        <ModalBody >
-
-                            <FormControl isRequired mb="15px">
-                                <FormLabel color={"gray.600"}>Task Name</FormLabel>
-                                <Input
-                                    name="title"
-                                    value={formData.title}
-                                    onChange={handleChange}
-                                    type="text" placeholder='task' />
-                            </FormControl>
-
-                            {/* <FormControl isRequired mb="15px">
+              {/* <FormControl isRequired mb="15px">
                                 <FormLabel>Assignee</FormLabel>
                                 <Input
                                     name="title"
@@ -102,7 +105,7 @@ export const ListTemplate = () => {
     }
 
     return (
-        <Box>
+        <Box w={"full"} bgColor={"white"} p="10px" borderRadius={"10px"} boxShadow="md" >
             <Box>
                 <TableContainer>
                     <Table variant='simple'>
@@ -120,14 +123,8 @@ export const ListTemplate = () => {
                             <Tr _hover={{ backgroundColor: "#ECEFF1" }} color={'gray.600'}>
                                 <Td _hover={{ border: "1px solid #BDBDBD" }}>
                                     <HStack>
-                                        <Box w="20px" h="20px">
-                                            <Image
-                                                src={"https://minehub.com/wp-content/uploads/2023/07/Chevron.svg"}
-                                                alt=""
-                                                w={"100%"}
-                                                h={"100%"}
-                                                objectFit="contain"
-                                            />
+                                        <Box>
+                                            <FaAngleRight color='pink' size={"20px"} />
                                         </Box>
                                         <Box>
                                             Name
@@ -142,14 +139,8 @@ export const ListTemplate = () => {
                             <Tr _hover={{ backgroundColor: "#ECEFF1" }} color={'gray.600'}>
                                 <Td _hover={{ border: "1px solid #BDBDBD" }}>
                                     <HStack>
-                                        <Box w="20px" h="20px">
-                                            <Image
-                                                src={"https://minehub.com/wp-content/uploads/2023/07/Chevron.svg"}
-                                                alt=""
-                                                w={"100%"}
-                                                h={"100%"}
-                                                objectFit="contain"
-                                            />
+                                        <Box >
+                                            <FaAngleRight color='pink' size={"20px"} />
                                         </Box>
                                         <Box>
                                             Name
@@ -202,3 +193,4 @@ export const ListTemplate = () => {
         </Box >
     )
 }
+
