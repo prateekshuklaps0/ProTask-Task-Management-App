@@ -38,7 +38,7 @@ import SideBar from "../Components/SideBar";
 const Home_2 = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [color, setColor] = useState(
-    localStorage.getItem("bg-color") || "bg-blue-200"
+    localStorage.getItem("bg-color") || "bg-slate-50"
   );
   const currentDay = Date()?.split(" ")[0];
   const currentMonth = Date()?.split(" ")[1];
@@ -76,7 +76,7 @@ const Home_2 = () => {
             Home{" "}
             <button
               onClick={onOpen}
-              className=" border-1 p-2 rounded-md text-xs bg-slate-100 inline-flex items-center space-x-1"
+              className=" border-1 p-2 rounded-md text-xs bg-white inline-flex items-center space-x-1"
             >
               <BiCustomize fontSize={"18px"} /> <span> Customize</span>
             </button>
@@ -91,7 +91,7 @@ const Home_2 = () => {
             </h2>
 
             <div className=" mt-3 pr-2">
-              <ul className="flex justify-evenly space-x-8 text-xs md:text-sm lg:text-xs xl:text-lg 2xl:text-sm  bg-slate-100 p-3 m-auto w-96 sm:w-96 md:w-2/3 lg:w-96 xl:w-1/2 2xl:w-96 rounded-3xl">
+              <ul className="flex justify-evenly space-x-8 text-xs md:text-sm lg:text-xs xl:text-lg 2xl:text-sm  bg-white p-3 m-auto w-96 sm:w-96 md:w-2/3 lg:w-96 xl:w-1/2 2xl:w-96 rounded-3xl">
                 <li className="cursor-pointer">My Month ▾ </li>
                 <li className="flex items-center space-x-1 cursor-pointer">
                   <BsCheckAll fontSize={"18px"} />{" "}
@@ -108,7 +108,7 @@ const Home_2 = () => {
 
           <div className="grid grid-flow-row grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-7 place-items-center m-auto mt-10">
             {/* Notepad */}
-            <div className="w-5/6 h-64 rounded-lg bg-slate-100 box-border">
+            <div className="w-5/6 h-64 rounded-lg bg-white box-border shadow-lg">
               <h1 className="p-3 font-medium flex items-center space-x-1">
                 <span>Private Notepad</span> <BiLockAlt fontSize={"12px"} />
               </h1>
@@ -131,7 +131,7 @@ const Home_2 = () => {
             </div>
             {/* 
         Tasks */}
-            <div className="w-5/6 h-64 rounded-lg bg-slate-100">
+            <div className="w-5/6 h-64 rounded-lg bg-white shadow-lg">
               <h1 className="p-3 font-medium flex items-center space-x-1">
                 <span>My Tasks</span> <BiLockAlt fontSize={"12px"} />
               </h1>
@@ -178,7 +178,7 @@ const Home_2 = () => {
               </Tabs>
             </div>
             {/* Projects */}
-            <div className="w-5/6 h-64 rounded-lg bg-slate-100">
+            <div className="w-5/6 h-64 rounded-lg bg-white shadow-lg">
               <h1 className="p-3 font-medium flex items-center space-x-3">
                 <span>Projects</span>{" "}
                 <span className="text-xs ">Recents ▾</span>
@@ -202,7 +202,7 @@ const Home_2 = () => {
               </div>
             </div>
             {/* People */}
-            <div className="w-5/6 h-64 rounded-lg bg-slate-100">
+            <div className="w-5/6 h-64 rounded-lg bg-white shadow-lg">
               <h1 className="p-3 font-medium flex items-center space-x-3">
                 <span>People</span>{" "}
                 <span className="text-xs ">Frequent Collaborators ▾</span>
