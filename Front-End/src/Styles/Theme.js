@@ -3,7 +3,7 @@ import { extendTheme } from "@chakra-ui/react";
 const Theme = extendTheme({
   colors: {
     primary: "#ff5263",
-    b: "#0D0E10",
+    greytext: "#727272",
   },
   fonts: {
     // Style Fonts

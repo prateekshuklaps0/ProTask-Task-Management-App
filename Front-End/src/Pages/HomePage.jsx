@@ -6,8 +6,7 @@ import Navbar from "../Components/Navbar";
 
 const HomePage = () => {
   return (
-    <Box css={css.OuterBox}>
-      {/* <Navbar /> */}
+    <Box css={css.OuterBox} h="1500px">
       HomePage
     </Box>
   );

@@ -10,21 +10,18 @@ import { Template } from "./Components/Template";
 import Navbar from "./Components/Navbar";
 import AfterLoginPage from "./Pages/AfterLoginPage";
 
-
 function App() {
   return (
     <Box className="App">
-
       <Navbar />
       {/* <SideBar /> */}
-
 
       {/* Routes */}
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<AfterLoginPage />} />
         <Route path="/temp" element={<Template />} />
         <Route path="*" element={<PageNotFound />} />
-        <Route path="/home" element={<AfterLoginPage />} />
       </Routes>
     </Box>
   );
