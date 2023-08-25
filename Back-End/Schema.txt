@@ -1,0 +1,26 @@
+const userSchema = {
+  name: "string",
+  email: "string",
+  pass: "string",
+};
+
+const projectSchema = {
+  title: "string",
+  discription: "string",
+  note:"string", // Optional value
+  userId: "String",
+};
+
+const taskSchema = {
+  title: "string",
+  discription: "string",
+  status: "string",
+  dueDate: "string",
+  assignedTo:"string",
+  projectID: "string",
+  userId: "string",
+};
+
+
+
+

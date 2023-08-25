@@ -1,8 +1,9 @@
 import { css } from "@emotion/react";
 
 export const OuterBox = css`
+  box-shadow: 0px 3px 6px 0px rgba(140, 149, 159, 0.15);
   width: 100%;
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   z-index: 1000;
   background-color: white;
@@ -16,7 +17,7 @@ export const OuterBox = css`
 `;
 export const TopInnerCont = css`
   width: 85%;
-  height: 60px;
+  height: 55px;
   margin: auto;
   display: flex;
   align-items: center;
@@ -29,10 +30,10 @@ export const TopInnerCont = css`
   @media (max-width: 480px) {
   }
 `;
-export const ImageCss = css`
-  width: 100px;
-  height: 100%;
-  border: 1px solid red;
+export const LinksCont = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   @media (max-width: 992px) {
   }
