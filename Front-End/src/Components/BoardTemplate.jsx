@@ -106,7 +106,7 @@ export const BoardTemplate = () => {
 
                 {/*================== To-do task #FEF5F4  ============*/}
 
-                <Box borderRadius={"10px"} w={"30%"} backgroundColor={"red.100"} p={"10px"} >
+                <Box borderRadius={"10px"} w={"30%"} backgroundColor={"#FAFAFA"} p={"10px"} >
                     <VStack>
                         <Text color={"red.600"} fontWeight={"bold"}  >To do</Text>
 
