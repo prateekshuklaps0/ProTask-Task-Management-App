@@ -44,35 +44,45 @@ const MyTasks = () => {
         <div>
           <div className="flex items-center justify-between space-x-2 ml-4 mt-3 ">
             <div className="items-center flex space-x-2">
-              <Avatar w="40px" h="40px" />
-              <span className="font-medium">My Tasks ▾</span>
+              <Avatar w="50px" h="50px" />
+              <span className="font-medium text-lg">My Tasks ▾</span>
             </div>
-
-           
           </div>
 
-          <Tabs position="relative" variant="unstyled" fontSize={"15px"}>
+          <Tabs
+            position="relative"
+            variant="unstyled"
+            mt={"10px"}
+            fontSize={"15px"}
+            ml="10px"
+          >
             <TabList>
               <Tab
-                fontSize={"12px"}
+                fontSize={"15px"}
                 fontWeight="semibold"
                 className="flex items-center space-x-2"
+                _selected={{ bgColor: "white" }}
+                borderTopRadius="10px"
               >
-                <GoTasklist fontSize={"20px"} /> <span>List</span>
+                <GoTasklist fontSize={"25px"} /> <span>List</span>
               </Tab>
               <Tab
-                fontSize={"12px"}
+                fontSize={"15px"}
                 fontWeight="semibold"
                 className="flex items-center space-x-2"
+                _selected={{ bgColor: "white" }}
+                borderTopRadius="10px"
               >
-                <HiViewBoards fontSize={"20px"} /> <span>Board</span>
+                <HiViewBoards fontSize={"25px"} /> <span>Board</span>
               </Tab>
               <Tab
-                fontSize={"12px"}
+                fontSize={"15px"}
                 fontWeight="semibold"
                 className="flex items-center space-x-2"
+                _selected={{ bgColor: "white" }}
+                borderTopRadius="10px"
               >
-                <MdDateRange fontSize={"20px"} /> <span>Calender</span>
+                <MdDateRange fontSize={"25px"} /> <span>Calender</span>
               </Tab>
             </TabList>
             <TabIndicator
@@ -88,7 +98,7 @@ const MyTasks = () => {
                     <p className="text-center text-slate-500 text-sm mt-2">
                       you don't have any upcoming task
                     </p> */}
-                <AddTask/>
+                <AddTask />
                 <ListTemplate />
               </TabPanel>
               <TabPanel>
@@ -96,7 +106,7 @@ const MyTasks = () => {
                     <p className="text-center text-slate-500 text-sm mt-2">
                       you don't have any overdue task
                     </p> */}
-                    <AddTask/>
+                <AddTask />
                 <BoardTemplate />
               </TabPanel>
               <TabPanel>

@@ -35,7 +35,7 @@ const SideBar = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="hidden sm:hidden md:hidden lg:flex xl:flex h-screen text-sm   ">
+    <div className="hidden  sm:hidden md:hidden lg:flex xl:flex h-screen text-md   ">
       <div
         className={`${
           isOpen ? "w-48" : "w-0"
