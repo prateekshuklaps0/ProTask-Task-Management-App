@@ -7,7 +7,7 @@ import {
 import React, { useState } from 'react';
 import { FaPlus, FaUserCircle, FaGripLines } from "react-icons/fa";
 import { useMediaQuery } from '@chakra-ui/react'
-import { todoDrawer } from './TodoDrawer';
+import { TodoDrawer } from './TodoDrawer';
 
 
 const initData = {
@@ -115,9 +115,7 @@ export const BoardTemplate = () => {
                                 <Box m={"5px"} backgroundColor={"white"} p={"10px"} w={"95%"} borderRadius={"10px"}>
                                     <HStack>
                                         <Text textAlign={"left"} > task...</Text>
-                                        <Button onClick={handletodo}>
-                                            <FaGripLines size={10} />
-                                        </Button>
+                                        <Box >{TodoDrawer()}</Box>
                                     </HStack>
                                 </Box>
 

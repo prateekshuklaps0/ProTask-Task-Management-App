@@ -38,7 +38,7 @@ export const NavTemplate = () => {
                 </Box>
             </Box>
             <Box w={"full"}>
-                <Tabs variant='enclosed' defaultIndex={1} >
+                <Tabs variant='enclosed' defaultIndex={2} >
                     <TabList>
                         <Tab>Overview</Tab>
                         <Tab>List</Tab>
