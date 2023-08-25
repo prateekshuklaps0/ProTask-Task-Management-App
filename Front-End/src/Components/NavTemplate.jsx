@@ -34,6 +34,7 @@ export const NavTemplate = () => {
                 objectFit="contain"
               />
             </Box>
+
             <Heading size={"md"} color="gray.700">
               PROJECT NAME
             </Heading>
@@ -63,6 +64,9 @@ export const NavTemplate = () => {
             <Tab _selected={{ bgColor: "white" }}>Board</Tab>
             <Tab _selected={{ bgColor: "white" }}>Dashboard</Tab>
           </TabList>
+
+           
+
 
           <TabPanels>
             <TabPanel>
