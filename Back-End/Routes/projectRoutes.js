@@ -1,6 +1,7 @@
 const express = require("express");
 
 const { Auth } = require("../Middlewares/Auth");
+const { ProjectIDInserter } = require("../Middlewares/ProjectIDInserter");
 const { ProjectModel } = require("../Models/projectModel");
 
 const projectRoute = express.Router();
@@ -8,7 +9,7 @@ const projectRoute = express.Router();
 // Create New Project
 projectRoute.post("/newproject", Auth, async (req, res) => {
   try {
-    const { title } = req.body;
+    const { title, description, userId } = req.body;
 
     // Projects with same Titles should bot be created.
     const SameTitleExists = await ProjectModel.findOne({ title });
@@ -27,6 +28,52 @@ projectRoute.post("/newproject", Auth, async (req, res) => {
     res.status(500).json({ msg: "Creating Projects Error" });
   }
 });
+
+// Add Members to The Project
+projectRoute.post(
+  "/addmember/:memberId",
+  Auth,
+  ProjectIDInserter,
+  async (req, res) => {
+    try {
+      const { memberId } = req.params;
+      const { projectId } = req.body;
+
+      const found = await ProjectModel.findOne({ _id: projectId });
+      found.userId.push(memberId);
+
+      await ProjectModel.findByIdAndUpdate(projectId, found, { new: true });
+
+      res.status(201).json({ msg: "Member Added Successfully" });
+    } catch (error) {
+      console.error("Member Adding Error :", error);
+      res.status(500).json({ msg: "Member Adding Error" });
+    }
+  }
+);
+
+// Remove Members from The Project
+projectRoute.post(
+  "/removemember/:memberId",
+  Auth,
+  ProjectIDInserter,
+  async (req, res) => {
+    try {
+      const { memberId } = req.params;
+      const { projectId } = req.body;
+
+      const found = await ProjectModel.findOne({ _id: projectId });
+      found.userId = found.userId.filter((item, id) => item != memberId);
+
+      await ProjectModel.findByIdAndUpdate(projectId, found, { new: true });
+
+      res.status(201).json({ msg: "Member Removed Successfully" });
+    } catch (error) {
+      console.error("Member Removing Error :", error);
+      res.status(500).json({ msg: "Member Removing Error" });
+    }
+  }
+);
 
 // Get Projects
 projectRoute.get("/", Auth, async (req, res) => {
