@@ -4,6 +4,8 @@ import { Box } from "@chakra-ui/react";
 
 import HomePage from "./Pages/HomePage";
 import PageNotFound from "./Pages/PageNotFound";
+import { Login } from "./Pages/Login";
+import { Signup } from "./Pages/Signup";
 
 import SideBar from "./Components/SideBar";
 import { Template } from "./Components/Template";
@@ -27,9 +29,11 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/temp" element={<Template />} />
         <Route path="*" element={<PageNotFound />} />
+
         <Route path="/home" element={<Home_2 />} />
         <Route path="/task" element={<MyTasks />} />
         <Route path="/profile" element={<Profile />} />
+
       </Routes>
     </Box>
   );
