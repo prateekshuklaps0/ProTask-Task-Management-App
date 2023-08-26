@@ -1,6 +1,6 @@
 import { Select, Drawer, DrawerBody, DrawerFooter, Divider, Textarea, DrawerContent, DrawerCloseButton, Box, Stack, Text, Input, Button, useDisclosure } from '@chakra-ui/react'
 import React, { useState } from 'react';
-import { FaGripLines, FaAngleDoubleRight } from 'react-icons/fa';
+import { FaGripLines, FaAngleDoubleRight, FaEllipsisH } from 'react-icons/fa';
 
 export function TodoDrawer() {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -8,9 +8,9 @@ export function TodoDrawer() {
 
     return (
         <>
-            <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
-                <FaGripLines size={10} />
-            </Button>
+            <Button ref={btnRef} bgColor='gray.50' size={"sm"} onClick={onOpen} >
+                <FaEllipsisH size={10} color='gray' />
+            </Button >
             <Drawer
                 isOpen={isOpen}
                 placement='right'
