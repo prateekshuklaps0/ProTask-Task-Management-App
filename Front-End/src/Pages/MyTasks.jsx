@@ -35,12 +35,12 @@ import AddTask from "../Components/AddTask";
 const MyTasks = () => {
   const Bgcolor = localStorage.getItem("bg-color");
   return (
-    <div className="flex ">
-      <div>
+    <div className="flex h-screen ">
+      <div className="fixed">
         <SideBar />
       </div>
       {/* MyTasks */}
-      <div className={`flex-1 ${Bgcolor}`}>
+      <div className={`flex-1 pl-0 sm:pl-0 md:pl-0 lg:pl-48 xl:pl-48 ${Bgcolor}`}>
         <div>
           <div className="flex items-center justify-between space-x-2 ml-4 mt-3 ">
             <div className="items-center flex space-x-2">

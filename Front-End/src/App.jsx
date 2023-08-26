@@ -30,6 +30,8 @@ function App() {
         <Route path="/home" element={<Home_2 />} />
         <Route path="/task" element={<MyTasks />} />
         <Route path="/profile" element={<Profile />} />
+        {/* <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} /> */}
       </Routes>
     </Box>
   );
