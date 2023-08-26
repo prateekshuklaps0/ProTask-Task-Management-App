@@ -1,7 +1,7 @@
 import * as css from "../Styles/NavbarCss";
 import { Link as ScrollLink } from "react-scroll";
 import { NavLink, useLocation } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import {
   Box,
   Text,
@@ -95,7 +95,6 @@ const Navbar = () => {
               />
             </InputGroup>
           </Box>
-          
         )}
 
         {/* Log In & Sign Up */}
@@ -115,7 +114,7 @@ const Navbar = () => {
                 <Text css={css.MenuTextsCss}>Log Out</Text>
               </MenuItem>
             </MenuList>
-            <UserLogo/>
+            <UserLogo />
           </Menu>
         ) : (
           <Menu>
@@ -124,10 +123,14 @@ const Navbar = () => {
             </MenuButton>
             <MenuList>
               <MenuItem>
-                <NavLink to="/login" css={css.MenuTextsCss}>Log In</NavLink>
+                <NavLink to="/login" css={css.MenuTextsCss}>
+                  Log In
+                </NavLink>
               </MenuItem>
               <MenuItem>
-                <NavLink to="/signup" css={css.MenuTextsCss}>Sign Up</NavLink>
+                <NavLink to="/signup" css={css.MenuTextsCss}>
+                  Sign Up
+                </NavLink>
               </MenuItem>
             </MenuList>
           </Menu>
