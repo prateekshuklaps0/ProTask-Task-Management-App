@@ -21,6 +21,7 @@ import {
 import React from "react";
 import { ListTemplate } from "./ListTemplate";
 import { BoardTemplate } from "./BoardTemplate";
+import Dashboard from "../Pages/Dashboard";
 import { FaChevronDown } from "react-icons/fa";
 
 export const NavTemplate = () => {
@@ -112,7 +113,7 @@ export const NavTemplate = () => {
             </TabPanel>
 
             <TabPanel>
-              <p>Dashboard!</p>
+              <Dashboard/>
             </TabPanel>
           </TabPanels>
         </Tabs>
