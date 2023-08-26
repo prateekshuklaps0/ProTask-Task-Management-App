@@ -25,7 +25,7 @@ app.get("/", async (req, res) => {
 
 // Other Routes
 app.use("/users", userRoute);
-app.use("/project", projectRoute);
+app.use("/projects", projectRoute);
 app.use("/tasks", taskRoute);
 
 app.listen(8080, async () => {
