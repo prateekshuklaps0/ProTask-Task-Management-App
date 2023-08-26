@@ -39,11 +39,30 @@ const Navbar = () => {
     useContext(Context);
   const location = useLocation();
   const [searchInp, setSearchInp] = useState("");
-
+  const [isScrolled, setIsScrolled] = useState(false);
   const ScrollOffset = false ? -90 : false ? -100 : -120;
 
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <Box css={css.OuterBox} fontFamily="primaryf">
+    <Box
+      bg="greybg"
+      fontFamily="primaryf"
+      css={css.OuterBox(isScrolled, location.pathname)}
+    >
       <Box css={css.TopInnerCont}>
         <Logo fontSize={["20px", "22px", "26px"]} />
 

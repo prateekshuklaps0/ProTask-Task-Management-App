@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 
-import HomePage from "./Pages/HomePage";
+import LandingPage from "./Pages/LandingPage";
 import PageNotFound from "./Pages/PageNotFound";
 import { Login } from "./Pages/Login";
 import { Signup } from "./Pages/Signup";
@@ -23,7 +23,7 @@ function App() {
 
       {/* Routes */}
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/temp" element={<Template />} />
         <Route path="*" element={<PageNotFound />} />
 
