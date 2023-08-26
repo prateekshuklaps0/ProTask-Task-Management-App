@@ -20,14 +20,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </Provider>
     </BrowserRouter>
   </ContextProvider>
-
-  <Provider store={store}>
-    <ContextProvider>
-      <BrowserRouter>
-        <ChakraProvider theme={Theme}>
-          <App />
-        </ChakraProvider>
-      </BrowserRouter>
-    </ContextProvider>
-  </Provider>
 );
