@@ -12,13 +12,25 @@ import {
   TabPanel,
   AvatarGroup,
   Avatar,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Button
 } from "@chakra-ui/react";
 import React from "react";
 import { ListTemplate } from "./ListTemplate";
 import { BoardTemplate } from "./BoardTemplate";
 import Dashboard from "../Pages/Dashboard";
+import { FaChevronDown } from "react-icons/fa";
 
 export const NavTemplate = () => {
+
+  const handleDelete = () => {
+
+  }
+
+
   return (
     <VStack>
       <Box w={"full"}>
@@ -39,6 +51,24 @@ export const NavTemplate = () => {
             <Heading size={"md"} color="gray.700">
               PROJECT NAME
             </Heading>
+            <Box ml={"10px"} >
+
+              <Menu>
+                {({ isOpen }) => (
+                  <>
+                    <MenuButton size={"sm"} isActive={isOpen} as={Button} bgColor={"white"}>
+                      <FaChevronDown color="gray" />
+                    </MenuButton>
+                    <MenuList>
+                      <MenuItem onClick={handleDelete}>Delete this project</MenuItem>
+                      <MenuItem onClick={() => alert('Kagebunshin')}>Create a Copy</MenuItem>
+                    </MenuList>
+                  </>
+                )}
+              </Menu>
+            </Box>
+
+
           </HStack>
           <Box>
             <AvatarGroup size="sm" max={2} mr={"20px"}>
@@ -66,7 +96,7 @@ export const NavTemplate = () => {
             <Tab _selected={{ bgColor: "white" }}>Dashboard</Tab>
           </TabList>
 
-           
+
 
 
           <TabPanels>
