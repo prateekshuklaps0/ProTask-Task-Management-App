@@ -1,136 +1,132 @@
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
-  Flex,
+  Button,
   Box,
+  Flex,
   FormControl,
   FormLabel,
   Heading,
   Input,
-  Checkbox,
-  Stack,
-  Button,
-  Link,
-  Text,
-  useColorModeValue,
-  InputRightElement,
   InputGroup,
-} from "@chakra-ui/react";
-import axios from "axios";
-import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+  InputRightElement,
+  Stack,
+  Image,
+  Text,
+} from '@chakra-ui/react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import logo from "../Images/Logo.png";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { LoginRequest } from '../Redux/Authentication/action';
 
-export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate()
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const pathComingFrom = location.state?.from?.pathname || '/';
 
-  const submitLogin = () => {
-    const payload = {
-      email,
-      password,
-    };
+  const handleLogin = async () => {
+    const credentials = { email, password };
 
-    axios.post(`${process.env.REACT_APP_SERVER}/users/login`, payload)
-      .then((res) => {
-        alert(res.data.msg);
-        localStorage.setItem("frontendtoken", res.data.token)
-        navigate("/")
-      })
-      .catch((err) => console.log(err));
+    try {
+      const response = await dispatch(LoginRequest(credentials));
+      const successMessage = 'Signed in successfully';
+      if (response && response === '/admin') {
+        navigate('/admin');
+        return;
+      }
+      if (response.type === 'Login_FAILURE') {
+        toast.error('Invalid credentials');
+      } else {
+        toast.success(successMessage);
+        navigate(pathComingFrom, { replace: true });
+      }
+    } catch (error) {
+      toast.error('Invalid credentials.');
+    }
+  };
 
-    setEmail("");
-    setPassword("");
+
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
-    <Flex
-      minH={"70vh"}
-      align={"center"}
-      justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
-    >
-      <Stack
-        //border={"1px solid red"}
-        w={"1000px"}
-        spacing={8}
-        mx={"auto"}
-        maxW={"lg"}
-        py={12}
-        px={6}
-      >
-        <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Sign In </Heading>
-        </Stack>
-
+    <>
+  
+      <ToastContainer />
+      <Flex minH={'100vh'} align={'center'} justify={'center'} bg={'gray.100'}>
         <Box
-          rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
-          boxShadow={"lg"}
+          w={'80%'}
+          bg={'white'}
+          rounded={'lg'}
+          boxShadow={'lg'}
           p={8}
+          mx={4}
+          my={8}
         >
-          <Stack spacing={4}>
-            <FormControl id="email" isRequired>
-              <FormLabel>Email</FormLabel>
-              <Input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+          <Flex direction={{ base: 'column', md: 'row' }}>
+            <Flex flex={2} display={{ base: 'none', md: 'block' }} mr={8}>
+              <Image
+                alt={'Sign Up Image'}
+                objectFit={'cover'}
+                src={logo}
+                h="100%"
               />
-            </FormControl>
-
-            <FormControl id="password" isRequired>
-              <FormLabel>Password</FormLabel>
-              <InputGroup>
+            </Flex>
+            <Stack spacing={4} w={{ base: 'full', md: '50%' }}>
+              <Heading fontSize={'2xl'}>Sign in to your account</Heading>
+              <FormControl id="email" isRequired>
+                <FormLabel mb={2}>Email address</FormLabel>
                 <Input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  size="md"
                 />
-                <InputRightElement h={"full"}>
-                  <Button variant={"ghost"} onClick={() =>
-                    setShowPassword((showPassword) => !showPassword)
-                  }>
-                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
-            </FormControl>
-
-            <Stack spacing={10}>
-              <Stack
-                direction={{ base: "column", sm: "row" }}
-                align={"start"}
-                justify={"space-between"}
-              >
-                <Checkbox>Remember me</Checkbox>
-                <Link color={"blue.400"}>Forgot password?</Link>
-              </Stack>
-
+              </FormControl>
+              <FormControl id="password" isRequired>
+                <FormLabel mb={2}>Password</FormLabel>
+                <InputGroup>
+                  <Input
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    size="md"
+                  />
+                  <InputRightElement width="3rem">
+                    {showPassword ? (
+                      <ViewOffIcon onClick={handleTogglePassword} />
+                    ) : (
+                      <ViewIcon onClick={handleTogglePassword} />
+                    )}
+                  </InputRightElement>
+                </InputGroup>
+              </FormControl>
               <Button
-                onClick={submitLogin}
-                bg={"blue.400"}
-                color={"white"}
-                _hover={{
-                  bg: "blue.500",
-                }}
+                colorScheme={'blue'}
+                variant={'solid'}
+                onClick={handleLogin}
+                size="md"
               >
                 Sign in
               </Button>
-            </Stack>
-
-            <Stack pt={6}>
-              <Text align={"center"}>
-                If have no account?{" "}
-                <NavLink style={{ color: "dodgerblue" }} to="/signup">
-                  Sign Up
-                </NavLink>
+              <Text mt={2} textAlign="center" fontSize="md" color="black.500">
+                Don't have an account?{' '}
+                <Link to="/signup">Sign up</Link>
               </Text>
             </Stack>
-          </Stack>
+          </Flex>
         </Box>
-      </Stack>
-    </Flex>
+      </Flex>
+    </>
   );
 };
+
+export default Login;

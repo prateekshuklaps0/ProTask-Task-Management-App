@@ -10,6 +10,17 @@ import { Provider } from "react-redux";
 import { store } from "./Redux/Store";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
+
+  <ContextProvider >
+    <BrowserRouter>
+    <Provider store={store}>
+      <ChakraProvider theme={Theme}>
+        <App />
+      </ChakraProvider>
+      </Provider>
+    </BrowserRouter>
+  </ContextProvider>
+
   <Provider store={store}>
     <ContextProvider>
       <BrowserRouter>

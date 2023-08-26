@@ -1,29 +1,20 @@
 import * as css from "../Styles/NavbarCss";
 import { Link as ScrollLink } from "react-scroll";
 import { NavLink, useLocation } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import {
   Box,
   Text,
   Image,
   Center,
-  Button,
   Avatar,
-  AvatarBadge,
-  AvatarGroup,
   InputGroup,
-  InputLeftAddon,
   InputLeftElement,
   Input,
-  InputRightAddon,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
 } from "@chakra-ui/react";
 
 import {
@@ -33,6 +24,7 @@ import {
 
 import Logo from "./Logo";
 import { Context } from "../Redux/Context";
+import UserLogo from "./UserLogo";
 
 const Navbar = () => {
   const { token, setToken, loggedInUser, userNameLogged, setUserNameLogged } =
@@ -84,6 +76,7 @@ const Navbar = () => {
               />
             </InputGroup>
           </Box>
+          
         )}
 
         {/* Log In & Sign Up */}
@@ -97,6 +90,7 @@ const Navbar = () => {
                 color="white"
               />
             </MenuButton>
+            <UserLogo/>
             <MenuList>
               <Text css={css.NameText}>{`Hi ${userNameLogged} !`}</Text>
               <MenuItem>
