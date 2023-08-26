@@ -105,10 +105,10 @@ const Navbar = () => {
             </MenuButton>
             <MenuList>
               <MenuItem>
-                <NavLink css={css.MenuTextsCss}>Log In</NavLink>
+                <NavLink to="/login" css={css.MenuTextsCss}>Log In</NavLink>
               </MenuItem>
               <MenuItem>
-                <NavLink css={css.MenuTextsCss}>Sign Up</NavLink>
+                <NavLink to="/signup" css={css.MenuTextsCss}>Sign Up</NavLink>
               </MenuItem>
             </MenuList>
           </Menu>
