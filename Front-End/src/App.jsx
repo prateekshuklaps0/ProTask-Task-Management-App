@@ -31,8 +31,11 @@ function App() {
         <Route path="/home" element={<Home_2 />} />
         <Route path="/task" element={<MyTasks />} />
         <Route path="/profile" element={<Profile />} />
+
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>}/>
+
+        
       </Routes>
     </Box>
   );

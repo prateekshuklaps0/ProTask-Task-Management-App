@@ -19,7 +19,7 @@ projectRoute.post("/newproject", Auth, async (req, res) => {
         .json({ msg: "Project with same Title already exists." });
     }
 
-    const ProjectData = ProjectModel(req.body);
+    const ProjectData = new ProjectModel(req.body);
     await ProjectData.save();
 
     res.status(201).json({ msg: "Project Created Successfully" });

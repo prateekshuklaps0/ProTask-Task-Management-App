@@ -22,11 +22,13 @@ taskRoute.post("/addtask", Auth, ProjectIDInserter, async (req, res) => {
 // Get Tasks
 taskRoute.get("/", Auth, ProjectIDInserter, async (req, res) => {
   try {
-    const { projectId } = req.body;
+    const {projectId} = req.body;
+    const {userId} = req.body
 
-    const TasksData = await TaskModel.find({ projectId });
+    const TasksDataProId = await TaskModel.find({ projectId });
+    const TasksDataUserId = await TaskModel.find({ userId });
 
-    res.status(201).json(TasksData);
+    res.status(201).json({TasksDataProId,TasksDataUserId});
   } catch (error) {
     console.error("Getting Tasks Error :", error);
     res.status(500).json({ msg: "Getting Tasks Error" });
