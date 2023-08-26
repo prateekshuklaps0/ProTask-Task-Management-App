@@ -6,7 +6,7 @@ import Img from "../Images/Logo.png";
 
 const Logo = ({ fontSize }) => {
   return (
-    <Link fontFamily="k" fontSize={fontSize} to="/" css={LinkCss}>
+    <Link fontFamily="k" fontSize={fontSize} href="/" css={LinkCss}>
       <Text css={TextCss}>PR</Text>
       <Image w={fontSize} src={Img} css={ImageCss} />
       <Text css={TextCss}>TASK</Text>

@@ -4,6 +4,9 @@ const Theme = extendTheme({
   colors: {
     primary: "#ff5263",
     greytext: "#727272",
+    blacktext: "#0D0E10",
+
+    greybg: "#eeebea",
   },
   fonts: {
     // Style Fonts
