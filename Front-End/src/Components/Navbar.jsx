@@ -90,13 +90,13 @@ const Navbar = () => {
                 color="white"
               />
             </MenuButton>
-            <UserLogo/>
             <MenuList>
               <Text css={css.NameText}>{`Hi ${userNameLogged} !`}</Text>
               <MenuItem>
                 <Text css={css.MenuTextsCss}>Log Out</Text>
               </MenuItem>
             </MenuList>
+            <UserLogo/>
           </Menu>
         ) : (
           <Menu>
@@ -105,10 +105,10 @@ const Navbar = () => {
             </MenuButton>
             <MenuList>
               <MenuItem>
-                <NavLink css={css.MenuTextsCss}>Log In</NavLink>
+                <NavLink to="/login" css={css.MenuTextsCss}>Log In</NavLink>
               </MenuItem>
               <MenuItem>
-                <NavLink css={css.MenuTextsCss}>Sign Up</NavLink>
+                <NavLink to="/signup" css={css.MenuTextsCss}>Sign Up</NavLink>
               </MenuItem>
             </MenuList>
           </Menu>
