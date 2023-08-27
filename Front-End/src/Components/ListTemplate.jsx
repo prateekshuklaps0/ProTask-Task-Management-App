@@ -105,7 +105,7 @@ export const ListTemplate = () => {
     }
 
     return (
-        <Box w={"full"}>
+        <Box w={"full"} bgColor={"white"} p="10px" borderRadius={"10px"} boxShadow="md" >
             <Box>
                 <TableContainer>
                     <Table variant='simple'>

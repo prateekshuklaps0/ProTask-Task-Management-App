@@ -24,7 +24,7 @@ import { RiNotification3Line } from "react-icons/ri";
 // import { GoProjectSymNavLink } from "react-icons/go";
 import { BiSolidSquareRounded } from "react-icons/bi";
 import { MdAddBox } from "react-icons/md";
-import {NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const SideBar = () => {
   //   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -35,11 +35,11 @@ const SideBar = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="hidden sm:hidden md:hidden lg:flex xl:flex h-screen text-sm   ">
+    <div className="hidden  sm:hidden md:hidden lg:flex xl:flex h-screen text-md   ">
       <div
         className={`${
           isOpen ? "w-48" : "w-0"
-        } bg-gray-50 min-h-screen border-r border-t overflow-hidden transition-width duration-500`}
+        } bg-white min-h-screen border-r border-t overflow-hidden transition-width duration-500`}
       >
         {/* <button onClick={toggleSidebar} className="flex ml-auto mr-3">❌</button> */}
         <div className="p-2">
@@ -71,7 +71,7 @@ const SideBar = () => {
             </li>
             <NavLink to="/temp">
               {" "}
-              <li className="flex items-center space-x-2 pl-2 pt-1 pr-1 pb-1 box-border cursor-pointer hover:bg-slate-200 rounded-md active:bg-slate-50">
+              <li className="flex items-center space-x-2 mt-3 pl-2 pt-1 pr-1 pb-1 box-border cursor-pointer hover:bg-slate-200 rounded-md active:bg-slate-50">
                 <BiSolidSquareRounded className="text-orange-300" />
                 <span>Project-1</span>
               </li>

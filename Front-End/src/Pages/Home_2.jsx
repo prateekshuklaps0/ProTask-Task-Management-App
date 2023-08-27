@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BsCheckAll } from "react-icons/bs";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { BiCheckCircle, BiCustomize } from "react-icons/bi";
-import { AiOutlineCheck } from "react-icons/ai";
+import { AiOutlineCheck, AiOutlineCheckCircle } from "react-icons/ai";
 import { BiLockAlt } from "react-icons/bi";
 import check from "../Images/check.png";
 import project from "../Images/project.webp";
@@ -32,14 +32,36 @@ import {
   AvatarGroup,
 } from "@chakra-ui/react";
 import SideBar from "../Components/SideBar";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { get_projects } from "../Redux/ProjectReducer/action";
+import { get_tasks } from "../Redux/TaskReducer/action";
 
 const Home_2 = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [color, setColor] = useState(
-    localStorage.getItem("bg-color") || "bg-blue-200"
+    localStorage.getItem("bg-color") || "bg-slate-50"
   );
+  const dispatch = useDispatch();
+  const projects = useSelector((store) => store.projectReducer.projects);
+  const tasks = useSelector((store) => store.taskReducer.tasks);
+
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTg2NzNjNjAxM2U4MDNmN2RhNWEwMyIsImlhdCI6MTY5MzA0ODMzMn0.oxH99MF0dxPcGv-s53dPgG2wvj9qWa6Xijtb9Oeqol0";
+
+  const projectId = "64e9df3be1cc48d363ff2686";
+
+  const todoTask = tasks?.find((el) => el.status === "todo");
+
+  const inprogressTask = tasks.find((el) => el.status == "inprogress");
+
+  const completedTask = tasks.find((el) => el.status == "completed");
+
+
+  useEffect(() => {
+    dispatch(get_projects(token));
+    dispatch(get_tasks(token, projectId));
+  }, []);
+
   const currentDay = Date()?.split(" ")[0];
   const currentMonth = Date()?.split(" ")[1];
   const currentDate = Date()?.split(" ")[2];
@@ -76,7 +98,7 @@ const Home_2 = () => {
             Home{" "}
             <button
               onClick={onOpen}
-              className=" border-1 p-2 rounded-md text-xs bg-slate-100 inline-flex items-center space-x-1"
+              className=" border-1 p-2 rounded-md text-sm bg-white inline-flex items-center space-x-1"
             >
               <BiCustomize fontSize={"18px"} /> <span> Customize</span>
             </button>
@@ -91,7 +113,7 @@ const Home_2 = () => {
             </h2>
 
             <div className=" mt-3 pr-2">
-              <ul className="flex justify-evenly space-x-8 text-xs md:text-sm lg:text-xs xl:text-lg 2xl:text-sm  bg-slate-100 p-3 m-auto w-96 sm:w-96 md:w-2/3 lg:w-96 xl:w-1/2 2xl:w-96 rounded-3xl">
+              <ul className="flex justify-evenly space-x-8 text-xs md:text-sm lg:text-sm xl:text-lg 2xl:text-sm  bg-white p-3 m-auto w-96 sm:w-96 md:w-2/3 lg:w-2/3 xl:w-2/3 2xl:w-1/3 rounded-3xl">
                 <li className="cursor-pointer">My Month ▾ </li>
                 <li className="flex items-center space-x-1 cursor-pointer">
                   <BsCheckAll fontSize={"18px"} />{" "}
@@ -108,7 +130,7 @@ const Home_2 = () => {
 
           <div className="grid grid-flow-row grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-7 place-items-center m-auto mt-10">
             {/* Notepad */}
-            <div className="w-5/6 h-64 rounded-lg bg-slate-100 box-border">
+            <div className="w-5/6 h-80 rounded-lg bg-white box-border shadow-lg">
               <h1 className="p-3 font-medium flex items-center space-x-1">
                 <span>Private Notepad</span> <BiLockAlt fontSize={"12px"} />
               </h1>
@@ -131,20 +153,20 @@ const Home_2 = () => {
             </div>
             {/* 
         Tasks */}
-            <div className="w-5/6 h-64 rounded-lg bg-slate-100">
+            <div className="w-5/6 h-80 rounded-lg bg-white shadow-lg">
               <h1 className="p-3 font-medium flex items-center space-x-1">
                 <span>My Tasks</span> <BiLockAlt fontSize={"12px"} />
               </h1>
 
-              <Tabs position="relative" variant="unstyled" fontSize={"15px"}>
+              <Tabs position="relative" variant="unstyled" fontSize={"20px"}>
                 <TabList>
-                  <Tab fontSize={"12px"} fontWeight="semibold">
+                  <Tab fontSize={"15px"} fontWeight="semibold">
                     Upcoming
                   </Tab>
-                  <Tab fontSize={"12px"} fontWeight="semibold">
+                  <Tab fontSize={"15px"} fontWeight="semibold">
                     Overdue
                   </Tab>
-                  <Tab fontSize={"12px"} fontWeight="semibold">
+                  <Tab fontSize={"15px"} fontWeight="semibold">
                     Completed
                   </Tab>
                 </TabList>
@@ -157,58 +179,134 @@ const Home_2 = () => {
 
                 <TabPanels>
                   <TabPanel>
-                    <img className="w-16 flex m-auto mt-2" src={check} alt="" />
-                    <p className="text-center text-slate-500 text-sm">
-                      you don't have any upcoming task
-                    </p>
+                    {tasks.length === 0 || !todoTask ? (
+                      <div>
+                        <img
+                          className="w-16 flex m-auto mt-2"
+                          src={check}
+                          alt=""
+                        />
+                        <p className="text-center text-slate-500 text-sm">
+                          you don't have any upcoming task
+                        </p>
+                      </div>
+                    ) : (
+                      <ul className="text-base max-h-48 overflow-y-scroll">
+                        {tasks.map(
+                          (el) =>
+                            el.status == "todo" && (
+                              <li
+                                className="flex items-center space-x-2 border-b-2 p-1"
+                                key={el._id}
+                              >
+                                <AiOutlineCheckCircle /> <span>{el.title}</span>
+                              </li>
+                            )
+                        )}
+                      </ul>
+                    )}
                   </TabPanel>
                   <TabPanel>
-                    <img className="w-16 flex m-auto mt-2" src={check} alt="" />
-                    <p className="text-center text-slate-500 text-sm">
-                      you don't have any overdue task
-                    </p>
+                    {tasks.length === 0 || !inprogressTask ? (
+                      <div>
+                        <img
+                          className="w-16 flex m-auto mt-2"
+                          src={check}
+                          alt=""
+                        />
+                        <p className="text-center text-slate-500 text-sm">
+                          you don't have any upcoming task
+                        </p>
+                      </div>
+                    ) : (
+                      <ul className="text-base max-h-48 overflow-y-scroll">
+                        {tasks.map(
+                          (el) =>
+                            el.status == "inprogress" && (
+                              <li
+                                className="flex items-center space-x-2 border-b-2 p-1"
+                                key={el._id}
+                              >
+                                <AiOutlineCheckCircle /> <span>{el.title}</span>
+                              </li>
+                            )
+                        )}
+                      </ul>
+                    )}
                   </TabPanel>
                   <TabPanel>
-                    <img className="w-16 flex m-auto mt-2" src={check} alt="" />
-                    <p className="text-center text-slate-500 text-sm">
-                      you don't have any completed task
-                    </p>
+                   {tasks.length === 0 || !completedTask ? (
+                      <div>
+                        <img
+                          className="w-16 flex m-auto mt-2"
+                          src={check}
+                          alt=""
+                        />
+                        <p className="text-center text-slate-500 text-sm">
+                          you don't have any upcoming task
+                        </p>
+                      </div>
+                    ) : (
+                      <ul className="text-base max-h-48 overflow-y-scroll">
+                        {tasks.map(
+                          (el) =>
+                            el.status == "completed" && (
+                              <li
+                                className="flex items-center space-x-2 border-b-2 p-1"
+                                key={el._id}
+                              >
+                                <AiOutlineCheckCircle /> <span>{el.title}</span>
+                              </li>
+                            )
+                        )}
+                      </ul>
+                    )}
                   </TabPanel>
                 </TabPanels>
               </Tabs>
             </div>
             {/* Projects */}
-            <div className="w-5/6 h-64 rounded-lg bg-slate-100">
+            <div className="w-5/6 h-80 rounded-lg bg-white shadow-lg">
               <h1 className="p-3 font-medium flex items-center space-x-3">
                 <span>Projects</span>{" "}
                 <span className="text-xs ">Recents ▾</span>
               </h1>
 
               <div className="grid grid-flow-row grid-cols-2 gap-5 place-items-center">
-                <div className="flex items-center space-x-2 mt-3">
+                {projects.map((el) => (
+                  <div
+                    className="flex items-center space-x-2 mt-3"
+                    key={el._id}
+                  >
+                    <img src={project} className="w-9 rounded-lg" alt="" />
+                    <p className="font-medium text-md">{el.title}</p>
+                  </div>
+                ))}
+
+                {/* <div className="flex items-center space-x-2 mt-3">
                   <img src={project} className="w-9 rounded-lg" alt="" />
-                  <p className="font-medium text-sm">Project-1</p>
+                  <p className="font-medium text-md">Project-1</p>
                 </div>
 
                 <div className="flex items-center space-x-2 mt-3">
                   <img src={project} className="w-9 rounded-lg" alt="" />
-                  <p className="font-medium text-sm">Project-2</p>
+                  <p className="font-medium text-md">Project-2</p>
                 </div>
 
                 <div className="flex items-center space-x-2 mt-3">
                   <img src={project} className="w-9 rounded-lg" alt="" />
-                  <p className="font-medium text-sm">Project-3</p>
-                </div>
+                  <p className="font-medium text-md">Project-3</p>
+                </div> */}
               </div>
             </div>
             {/* People */}
-            <div className="w-5/6 h-64 rounded-lg bg-slate-100">
+            <div className="w-5/6 h-80 rounded-lg bg-white shadow-lg">
               <h1 className="p-3 font-medium flex items-center space-x-3">
                 <span>People</span>{" "}
                 <span className="text-xs ">Frequent Collaborators ▾</span>
               </h1>
 
-              <div className="grid grid-flow-row grid-cols-2  mt-5 text-sm font-medium p-5 gap-6">
+              <div className="grid grid-flow-row grid-cols-2  mt-5 text-md font-medium p-5 gap-6">
                 <div className="flex items-center space-x-3">
                   <Avatar
                     size={"md"}

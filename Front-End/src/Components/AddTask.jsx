@@ -44,7 +44,7 @@ const AddTask = () => {
   };
   return (
     <>
-      <Button leftIcon={<MdAdd />} onClick={onOpen} size="xs" mb="20px">
+      <Button leftIcon={<MdAdd />} onClick={onOpen} size="sm" mb="20px">
         Add Task
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>

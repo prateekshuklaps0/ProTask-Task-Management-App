@@ -1,11 +1,37 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 
 const { Auth } = require("../Middlewares/Auth");
 const { UserModel, BlackListModel } = require("../Models/userModel");
 
 const userRoute = express.Router();
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  host: "smtp.gmail.com",
+  auth: {
+    user: "harshittechi9@gmail.com",
+    pass: "xbtgiqyuzchtwpvv",
+  },
+});
+
+// transporter
+//   .sendMail({
+//     from: "harshittechi9@gmail.com",
+//     // to:"prateekshuklaps0@gmail.com",
+//     subject: "This is Harshit from backend",
+//     text: "Hey i am from Harshit backend application",
+//     text: `Your OTP for the password reset process is ${OtpNo}`,
+//   })
+//   .then(() => {
+//     console.log(`Mail sent sucessfully  ${OtpNo}`);
+//     console.log(OtpNo);
+//   })
+//   .catch(() => {
+//     console.log("Transporter Mail Error :", err);
+//   });
 
 // SignUp
 userRoute.post("/signup", async (req, res) => {
@@ -14,18 +40,21 @@ userRoute.post("/signup", async (req, res) => {
 
     const found = await UserModel.findOne({ email });
     if (found) {
-      return res.status(400).json({ message: "Email Already Registered!" });
+      res.json({ message: "Email Already Registered!" });
+    }
+    else{
+      const hashed = await bcrypt.hash(pass, 10);
+
+      const UserData = UserModel({ ...req.body, pass: hashed });
+      await UserData.save();
+  
+      res.status(201).json({
+        msg: "User Registered Sucessfully!",
+        RegisteredUser: UserData,
+      });
     }
 
-    const hashed = await bcrypt.hash(pass, 10);
-
-    const UserData = UserModel({ ...req.body, pass: hashed });
-    await UserData.save();
-
-    res.status(201).json({
-      msg: "User Registered Sucessfully!",
-      RegisteredUser: UserData,
-    });
+   
   } catch (error) {
     console.error("SignUp Error :", error);
     res.status(500).json({ msg: "SignUp Error" });
@@ -51,6 +80,7 @@ userRoute.post("/login", async (req, res) => {
 
     res.status(200).json({
       msg: "User LogIn Succesfull",
+      userDetails: found,
       token,
     });
   } catch (error) {
@@ -111,3 +141,12 @@ userRoute.get("/single/:userId", Auth, async (req, res) => {
 });
 
 module.exports = { userRoute };
+
+// Otp Generator
+function otpGenerator() {
+  let otp = "";
+  for (let i = 0; i < 6; i++) {
+    otp += Math.floor(Math.random() * 10);
+  }
+  return Number(otp);
+}

@@ -1,183 +1,196 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
-  Flex,
+  Button,
   Box,
+  Flex,
   FormControl,
-  InputRightElement,
-  Stack,
   FormLabel,
   Heading,
   Input,
   InputGroup,
-  Button,
-  Select,
+  InputRightElement,
+  Stack,
+  Image,
   Text,
-  useColorModeValue,
 } from "@chakra-ui/react";
-import { NavLink, useNavigate } from "react-router-dom";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import logo from "../Images/Logo.png";
+import { signup } from "../Redux/Authentication/action";
+import { SIGNUP_SUCCESS } from "../Redux/Authentication/actionTypes";
 
-export const Signup = () => {
-  const [name, setName] = useState("");
+const SignUp = () => {
+  const [name, setname] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [gender, setGender] = useState("");
-  const [pass, setpass] = useState("");
-  const [showpass, setShowpass] = useState(false);
-
+  const [pass, setPass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  //const handleChange = (e) => {};
-
-  // const postdata = async (e) => {
-  //   e.preventDefault();
-  //   console.log("hii i am done");
-  // };
-
-  const postdata = () => {
-    const payload = {
+  const handleSignUp = () => {
+    const userData = {
       name,
       email,
-      phone,
-      gender,
       pass,
     };
 
-    axios.post(`${process.env.REACT_APP_SERVER}/users/register`, payload)
-      .then((res) => {
-        alert(res.data.msg)
-        navigate("/signin")
-      }
-      )
-      .catch((err) => console.log(err.message));
+    dispatch(signup(userData))
+      .then((response) => {
+        dispatch({ type: SIGNUP_SUCCESS });
+        console.log(response.data.message);
+        if (response.data.message === "Email Already Registered!") {
+          toast.error("Username or email already exits");
+        } else if (response.data.msg == "User Registered Sucessfully!") {
+          toast.success("Account created successfully");
+          setTimeout(() => {
+            navigate("/login");
+            console.log("Account created");
+          }, 2000);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Something went wrong. Please try again later.");
+      });
+  };
+  // const handleSignUp = async () => {
+  //   if (password !== confirmPassword) {
+  //     toast.error("Passwords do not match");
+  //     return;
+  //   }
 
-    setName("");
-    setEmail("");
-    setPhone("");
-    setGender("")
-    setpass("");
+  //   const userData = {
+  //     username: username,
+  //     email: email,
+  //     password: password,
+  //   };
+
+  //   try {
+  //     const success = await dispatch(signupRequest(userData));
+
+  //     if (success) {
+  //       toast.success("Account created successfully");
+  //       setTimeout(() => {
+  //         navigate("/login");
+  //         console.log("Account created");
+  //       }, 2000);
+  //     } else {
+  //       toast.error("Username or email already exits");
+  //     }
+  //   } catch (error) {
+  //     toast.error("Something went wrong. Please try again later.");
+  //   }
+  // };
+
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
   };
 
+  const handleToggleConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
 
   return (
-    <Flex
-      // border={"1px solid "}
-      minH={"100vh"}
-      align={"center"}
-      justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
-    >
-      <Stack
-        //border={"1px solid red"}
-        spacing={5}
-        mx={"auto"}
-        w={"1000px"}
-        maxW={"lg"}
-        py={8}
-        px={6}
-      >
-        <Stack align={"center"}>
-          <Heading fontSize={"4xl"} textAlign={"center"}>
-            Sign Up
-          </Heading>
-        </Stack>
+    <>
+      <ToastContainer />
 
+      <Flex minH={"100vh"} align={"center"} justify={"center"} bg={"gray.100"}>
         <Box
+          w={"80%"}
+          bg={"white"}
           rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
           boxShadow={"lg"}
           p={8}
+          mx={4}
+          my={8}
         >
-          <Stack spacing={4}>
-            <FormControl id="firstName" isRequired>
-              <FormLabel>Name</FormLabel>
-              <Input
-                type="text"
-                value={name}
-                name="name"
-                onChange={(e) => setName(e.target.value)}
+          <Flex direction={{ base: "column", md: "row" }}>
+            <Flex flex={2} display={{ base: "none", md: "block" }} mr={8}>
+              <Image
+                alt={"Sign Up Image"}
+                objectFit={"cover"}
+                src={logo}
+                h="100%"
               />
-            </FormControl>
-
-            <FormControl id="email" isRequired>
-              <FormLabel>Email</FormLabel>
-              <Input
-                type="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </FormControl>
-
-            {/* <FormControl id="gender" isRequired>
-              <FormLabel>Gender</FormLabel>
-              <Select
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-                name="gender"
-              >
-                <option value="">Choose Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </Select>
-            </FormControl> */}
-
-            <FormControl id="phone" isRequired>
-              <FormLabel>Phone Number</FormLabel>
-              <Input
-                type="number"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                name="phone"
-              />
-            </FormControl>
-
-            <FormControl id="pass" isRequired>
-              <FormLabel>Password</FormLabel>
-              <InputGroup>
+            </Flex>
+            <Stack spacing={4} w={{ base: "full", md: "50%" }}>
+              <Heading fontSize={"2xl"}>Create an account</Heading>
+              <FormControl id="username" isRequired>
+                <FormLabel mb={2}>Username</FormLabel>
                 <Input
-                  type={showpass ? "text" : "pass"}
-                  name="pass"
-                  value={pass}
-                  onChange={(e) => setpass(e.target.value)}
+                  type="text"
+                  value={name}
+                  onChange={(e) => setname(e.target.value)}
+                  size="md"
                 />
-                <InputRightElement h={"full"}>
-                  <Button variant={"ghost"} onClick={() =>
-                    setShowpass((showpass) => !showpass)
-                  }>
-                    {showpass ? <ViewIcon /> : <ViewOffIcon />}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
-            </FormControl>
-
-            <Stack spacing={10} pt={2}>
+              </FormControl>
+              <FormControl id="email" isRequired>
+                <FormLabel mb={2}>Email address</FormLabel>
+                <Input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  size="md"
+                />
+              </FormControl>
+              <FormControl id="password" isRequired>
+                <FormLabel mb={2}>Password</FormLabel>
+                <InputGroup>
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    value={pass}
+                    onChange={(e) => setPass(e.target.value)}
+                    size="md"
+                  />
+                  <InputRightElement width="3rem">
+                    {showPassword ? (
+                      <ViewOffIcon onClick={handleTogglePassword} />
+                    ) : (
+                      <ViewIcon onClick={handleTogglePassword} />
+                    )}
+                  </InputRightElement>
+                </InputGroup>
+              </FormControl>
+              <FormControl id="confirmPassword" isRequired>
+                <FormLabel mb={2}>Confirm Password</FormLabel>
+                <InputGroup>
+                  <Input
+                    type={showConfirmPassword ? "text" : "password"}
+                    value={confirmPass}
+                    onChange={(e) => setConfirmPass(e.target.value)}
+                    size="md"
+                  />
+                  <InputRightElement width="3rem">
+                    {showConfirmPassword ? (
+                      <ViewOffIcon onClick={handleToggleConfirmPassword} />
+                    ) : (
+                      <ViewIcon onClick={handleToggleConfirmPassword} />
+                    )}
+                  </InputRightElement>
+                </InputGroup>
+              </FormControl>
               <Button
-                onClick={postdata}
-                loadingText="Submitting"
-                size="lg"
-                bg={"blue.400"}
-                color={"white"}
-                _hover={{
-                  bg: "blue.500",
-                }}
+                colorScheme={"blue"}
+                variant={"solid"}
+                onClick={handleSignUp}
+                size="md"
               >
                 Sign up
               </Button>
-            </Stack>
-
-            <Stack pt={6}>
-              <Text align={"center"}>
-                Already a user?{" "}
-                <NavLink style={{ color: "dodgerblue" }} to="/signin">
-                  Sign In
-                </NavLink>
+              <Text mt={2} textAlign="center" fontSize="md" color="black.500">
+                Already have an account? <Link to="/login">Sign in</Link>
               </Text>
             </Stack>
-          </Stack>
+          </Flex>
         </Box>
-      </Stack>
-    </Flex>
+      </Flex>
+    </>
   );
 };
+
+export default SignUp;
