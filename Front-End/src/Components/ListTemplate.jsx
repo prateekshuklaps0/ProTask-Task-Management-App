@@ -43,9 +43,14 @@ export const ListTemplate = () => {
 
     useEffect(() => {
         dispatch(get_tasks(token, projectId))
-
     }, [])
 
+
+    const handleStatusChange = (value, el) => {
+        el.status = value;
+        dispatch(update_task(token, el.projectId, el._id, { status: el.status }))
+        dispatch(get_tasks(token, projectId))
+    }
 
 
     function addData() {
@@ -179,7 +184,7 @@ export const ListTemplate = () => {
 
                                     </Td>
                                     <Td _hover={{ border: "1px solid #BDBDBD" }}>
-                                        <Select w={"150px"} placeholder='Change Status' backgroundColor={"gray.50"} border={"none"} value={el?.status} >
+                                        <Select w={"150px"} placeholder='Change Status' backgroundColor={"gray.50"} border={"none"} value={el?.status} onChange={(e) => handleStatusChange(e.target.value, el)}>
                                             <option value='todo'> To Do </option>
                                             <option value='inprogress'> In Progress </option>
                                             <option value='completed'> Completed </option>
