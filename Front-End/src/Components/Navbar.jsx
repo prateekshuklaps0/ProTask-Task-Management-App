@@ -97,7 +97,7 @@ const Navbar = () => {
         )}
 
         {/* Log In & Sign Up */}
-        {!token ? (
+        {token ? (
           <Menu>
             <MenuButton>
               <Avatar
