@@ -134,7 +134,7 @@ const LandingPage = () => {
                 color={activeWorkflow == "strategic" ? "blacktext" : "greytext"}
                 onClick={() => setActiveWorkflow("strategic")}
                 _hover={{ color: "blacktext" }}
-                display={["none", "inline"]}
+                display={["none", "none", "inline"]}
                 css={css.TabsTextCss}
               >
                 Strategic planning
@@ -165,7 +165,13 @@ export default LandingPage;
 
 const WorkflowCard = ({ title, pointers, btnText, img, ind }) => {
   return (
-    <TabPanel display={ind >= 3 ? "none" : "inline"}>
+    <TabPanel
+      display={[
+        ind >= 3 ? "none" : "inline",
+        ind >= 4 ? "none" : "inline",
+        "inline",
+      ]}
+    >
       <Box css={css.WorkflowCardOuter}>
         <Box bg="greybg" css={css.CardLeftBox}>
           <Text css={css.TitleWorkflow}>{title}</Text>

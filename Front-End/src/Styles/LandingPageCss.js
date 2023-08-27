@@ -295,12 +295,11 @@ export const TabsTextCss = css`
     width: 130px;
   }
   @media (max-width: 768px) {
-    font-size: 15px;
-    width: 85px;
+    font-size: 14px;
+    width: auto;
   }
   @media (max-width: 480px) {
     font-size: 14px;
-    width: 85px;
   }
 `;
 export const WorkflowCardOuter = css`
@@ -343,14 +342,14 @@ export const CardLeftBox = css`
   @media (max-width: 768px) {
     padding-left: 30px;
     padding-right: 30px;
-    height: 380px;
+    height: 350px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
   }
   @media (max-width: 480px) {
     padding-left: 20px;
     padding-right: 20px;
-    height: 350px;
+    height: 305px;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
   }
