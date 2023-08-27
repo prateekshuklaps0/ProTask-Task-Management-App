@@ -5,7 +5,6 @@ import { Box } from "@chakra-ui/react";
 import HomePage from "./Pages/HomePage";
 import PageNotFound from "./Pages/PageNotFound";
 
-
 import SideBar from "./Components/SideBar";
 import { Template } from "./Components/Template";
 import Navbar from "./Components/Navbar";
@@ -15,6 +14,7 @@ import MyTasks from "./Pages/MyTasks";
 import Profile from "./Pages/Profile";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/Signup";
+import PrivateRoute from "./Components/PrivateRoute";
 
 function App() {
   return (
@@ -25,17 +25,36 @@ function App() {
       {/* Routes */}
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/temp" element={<Template />} />
+        <Route
+          path="/temp"
+          element={
+            <PrivateRoute>
+              <Template />
+            </PrivateRoute>
+          }
+        />
         <Route path="*" element={<PageNotFound />} />
 
         <Route path="/home" element={<Home_2 />} />
-        <Route path="/task" element={<MyTasks />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/task"
+          element={
+            <PrivateRoute>
+              <MyTasks />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
 
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/signup" element={<SignUp/>}/>
-
-        
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Box>
   );

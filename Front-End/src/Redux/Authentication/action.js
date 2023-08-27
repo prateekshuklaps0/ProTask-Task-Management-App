@@ -12,7 +12,7 @@ import {
 
 export const signup = (user)=>(dispatch)=> {
   dispatch({type: SIGNUP_REQUEST})
-   return axios.post("http://localhost:8080/users/signup", user)
+   return axios.post("https://pro-task.onrender.com/users/signup", user)
 }
 // export const signupRequest = (userData) => {
 //   return async (dispatch) => {
@@ -51,40 +51,45 @@ export const signup = (user)=>(dispatch)=> {
 //   };
 // };
 // Login Actions
-export const LoginRequest = (credentials) => {
-  return async (dispatch) => {
-    dispatch({ type: Login_REQUEST });
-    try {
-      const response = await axios.get(
-        "https://pro-task.onrender.com/users/login"
-      );
-      const users = response.data;
-      const user = users.find(
-        (user) =>
-          user.email === credentials.email &&
-          user.password === credentials.password
-      );
 
-      if (user) {
-         if (user.email === "admin@gmail.com" && user.password === "admin") {
-          return "/admin";
-        }
+export const LoginRequest=(user)=>(dispatch)=>  {
+   dispatch({type:Login_REQUEST})
+   return axios.post("https://pro-task.onrender.com/users/login", user)
+}
+// export const LoginRequest = (credentials) => {
+//   return async (dispatch) => {
+//     dispatch({ type: Login_REQUEST });
+//     try {
+//       const response = await axios.get(
+//         "https://pro-task.onrender.com/users/login"
+//       );
+//       const users = response.data;
+//       const user = users.find(
+//         (user) =>
+//           user.email === credentials.email &&
+//           user.password === credentials.password
+//       );
+
+//       if (user) {
+//          if (user.email === "admin@gmail.com" && user.password === "admin") {
+//           return "/admin";
+//         }
         
-        dispatch({
-          type: Login_SUCCESS,
-          payload: { username: user.username, email: user.email },
-        });
-        console.log(user);
-        return { username: user.username, email: user.email };
-      } else {
-        throw new Error("Invalid email or password");
-      }
-    } catch (error) {
-      dispatch({ type: Login_FAILURE, payload: error.message });
-      throw error;
-    }
-  };
-};
+//         dispatch({
+//           type: Login_SUCCESS,
+//           payload: { username: user.username, email: user.email },
+//         });
+//         console.log(user);
+//         return { username: user.username, email: user.email };
+//       } else {
+//         throw new Error("Invalid email or password");
+//       }
+//     } catch (error) {
+//       dispatch({ type: Login_FAILURE, payload: error.message });
+//       throw error;
+//     }
+//   };
+// };
 // Logout Action
 export const logout = () => {
   return {

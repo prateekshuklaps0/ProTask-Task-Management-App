@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Button,
   Box,
@@ -15,73 +15,100 @@ import {
   Stack,
   Image,
   Text,
-} from '@chakra-ui/react';
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+} from "@chakra-ui/react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import logo from "../Images/Logo.png";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { LoginRequest } from '../Redux/Authentication/action';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { LoginRequest } from "../Redux/Authentication/action";
+import { Login_SUCCESS } from "../Redux/Authentication/actionTypes";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [showpass, setShowPass] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const pathComingFrom = location.state?.from?.pathname || '/';
+  const pathComingFrom = location.state?.from?.pathname || "/";
 
   const handleLogin = async () => {
-    const credentials = { email, password };
+    const credentials = { email, pass };
 
-    try {
-      const response = await dispatch(LoginRequest(credentials));
-      const successMessage = 'Signed in successfully';
-      if (response && response === '/admin') {
-        navigate('/admin');
-        return;
-      }
-      if (response.type === 'Login_FAILURE') {
-        toast.error('Invalid credentials');
-      } else {
-        toast.success(successMessage);
-        navigate(pathComingFrom, { replace: true });
-      }
-    } catch (error) {
-      toast.error('Invalid credentials.');
-    }
+    dispatch(LoginRequest(credentials))
+      .then((res) => {
+        dispatch({
+          type: Login_SUCCESS,
+          payload: [res.data.userDetails, res.data.token],
+        });
+        console.log(res.data)
+        if (res.data.msg === "User Doesn't Exists!") {
+           toast.error("User Doesn't Exists!")
+        } else if(res.data.msg==="Wrong Password!") {
+          toast.error("Invalid credentials");
+        }
+        else{
+          // (toast({
+          //   title: "Login Successfull.",
+          //   status: "success",
+          //   duration: 5000,
+          //   isClosable: true,
+          // }),
+          toast.success("Login Successfull")
+          navigate("/home")
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+        toast.error("Invalid credentials.");
+      });
+
+    // try {
+    //   const response = await dispatch(LoginRequest(credentials));
+    //   const successMessage = 'Signed in successfully';
+    //   if (response && response === '/admin') {
+    //     navigate('/admin');
+    //     return;
+    //   }
+    //   if (response.type === 'Login_FAILURE') {
+    //     toast.error('Invalid credentials');
+    //   } else {
+    //     toast.success(successMessage);
+    //     navigate(pathComingFrom, { replace: true });
+    //   }
+    // } catch (error) {
+    //   toast.error('Invalid credentials.');
+    // }
   };
 
-
-  const handleTogglePassword = () => {
-    setShowPassword(!showPassword);
+  const handleTogglepass = () => {
+    setShowPass(!showpass);
   };
 
   return (
     <>
-  
       <ToastContainer />
-      <Flex minH={'100vh'} align={'center'} justify={'center'} bg={'gray.100'}>
+      <Flex minH={"100vh"} align={"center"} justify={"center"} bg={"gray.100"}>
         <Box
-          w={'80%'}
-          bg={'white'}
-          rounded={'lg'}
-          boxShadow={'lg'}
+          w={"80%"}
+          bg={"white"}
+          rounded={"lg"}
+          boxShadow={"lg"}
           p={8}
           mx={4}
           my={8}
         >
-          <Flex direction={{ base: 'column', md: 'row' }}>
-            <Flex flex={2} display={{ base: 'none', md: 'block' }} mr={8}>
+          <Flex direction={{ base: "column", md: "row" }}>
+            <Flex flex={2} display={{ base: "none", md: "block" }} mr={8}>
               <Image
-                alt={'Sign Up Image'}
-                objectFit={'cover'}
+                alt={"Sign Up Image"}
+                objectFit={"cover"}
                 src={logo}
                 h="100%"
               />
             </Flex>
-            <Stack spacing={4} w={{ base: 'full', md: '50%' }}>
-              <Heading fontSize={'2xl'}>Sign in to your account</Heading>
+            <Stack spacing={4} w={{ base: "full", md: "50%" }}>
+              <Heading fontSize={"2xl"}>Sign in to your account</Heading>
               <FormControl id="email" isRequired>
                 <FormLabel mb={2}>Email address</FormLabel>
                 <Input
@@ -91,35 +118,34 @@ const Login = () => {
                   size="md"
                 />
               </FormControl>
-              <FormControl id="password" isRequired>
-                <FormLabel mb={2}>Password</FormLabel>
+              <FormControl id="pass" isRequired>
+                <FormLabel mb={2}>pass</FormLabel>
                 <InputGroup>
                   <Input
-                    type={showPassword ? 'text' : 'password'}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    type={showpass ? "text" : "pass"}
+                    value={pass}
+                    onChange={(e) => setPass(e.target.value)}
                     size="md"
                   />
                   <InputRightElement width="3rem">
-                    {showPassword ? (
-                      <ViewOffIcon onClick={handleTogglePassword} />
+                    {showpass ? (
+                      <ViewOffIcon onClick={handleTogglepass} />
                     ) : (
-                      <ViewIcon onClick={handleTogglePassword} />
+                      <ViewIcon onClick={handleTogglepass} />
                     )}
                   </InputRightElement>
                 </InputGroup>
               </FormControl>
               <Button
-                colorScheme={'blue'}
-                variant={'solid'}
+                colorScheme={"blue"}
+                variant={"solid"}
                 onClick={handleLogin}
                 size="md"
               >
                 Sign in
               </Button>
               <Text mt={2} textAlign="center" fontSize="md" color="black.500">
-                Don't have an account?{' '}
-                <Link to="/signup">Sign up</Link>
+                Don't have an account? <Link to="/signup">Sign up</Link>
               </Text>
             </Stack>
           </Flex>

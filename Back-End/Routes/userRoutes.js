@@ -68,7 +68,7 @@ userRoute.post("/login", async (req, res) => {
 
     const found = await UserModel.findOne({ email });
     if (!found) {
-      return res.status(404).json({ msg: "User Doesn't Exists!" });
+      return res.json({ msg: "User Doesn't Exists!" });
     }
 
     const Matched = await bcrypt.compare(pass, found.pass);
