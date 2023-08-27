@@ -1,12 +1,15 @@
 import { css } from "@emotion/react";
 
-export const OuterBox = css`
-  box-shadow: 0px 3px 6px 0px rgba(140, 149, 159, 0.15);
+export const OuterBox = (isScrolled, location) => css`
   width: 100%;
   top: 0;
   position: sticky;
   z-index: 1000;
-  background-color: white;
+  box-shadow: ${location != "/"
+    ? "0px 3px 6px 0px rgba(140, 149, 159, 0.15)"
+    : isScrolled
+    ? "0px 3px 6px 0px rgba(140, 149, 159, 0.15)"
+    : "none"};
 
   @media (max-width: 992px) {
   }

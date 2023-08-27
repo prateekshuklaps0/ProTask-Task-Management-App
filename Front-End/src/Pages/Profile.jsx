@@ -1,14 +1,25 @@
 import { Avatar, Button, Textarea } from "@chakra-ui/react";
 import React from "react";
+import { useContext } from "react";
 import { BiLock } from "react-icons/bi";
 import { BsClock, BsMailbox, BsMailbox2 } from "react-icons/bs";
 import { MdAllInbox, MdMail } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
 import SideBar from "../Components/SideBar";
-
+import { store } from "../Redux/Store";
+import { Context } from "../Redux/Context";
+import axios from "axios";
 const Profile = () => {
   const Bgcolor = localStorage.getItem("bg-color");
+  const dispatch = useDispatch();
+ const {loggedInUser, token, userNameLogged} = useContext(Context)
 
-  return (
+ const EditProfile=()=>{
+
+     axios.patch("https://pro-task.onrender.com")
+ }
+
+   return (
     <div className="flex ">
       <div>
         <SideBar />
@@ -16,17 +27,17 @@ const Profile = () => {
 
       <div className={`flex-1 ${Bgcolor} p-8` }>
         <div className="flex bg-slate-100 p-3 rounded-lg flex-col gap-2 sm:flex-row md:flex-row lg:flex-row xl:flex-row items-center  space-x-7">
-          <Avatar name="MOhnish Vishwakarma" size={"2xl"} w="200px" h="200px" bgColor="blue.300" />
+          <Avatar name={loggedInUser.name} size={"2xl"} w="200px" h="200px" bgColor="blue.300" />
 
           <div className=" flex flex-col gap-3">
-            <h1 className="text-3xl font-normal">Mohnish Vishwakarma</h1>
+            <h1 className="text-3xl font-normal">{loggedInUser.name}</h1>
             <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row space-x-0 sm:space-x-2 md:space-x-2 lg:space-x-2 xl:space-x-2 items-start ">
               <p className="text-sm flex items-center space-x-1 text-slate-500">
                 <BsClock fontSize={"20px"} />{" "}
                 <span>{Date().split(" ")[4]} local time</span>{" "}
               </p>
               <p className="text-sm flex items-center space-x-1 text-slate-500">
-                <MdMail fontSize={"20px"} /> <span>mohnish201@gmail.com</span>
+                <MdMail fontSize={"20px"} /> <span>{loggedInUser.email}</span>
               </p>
             </div>
 

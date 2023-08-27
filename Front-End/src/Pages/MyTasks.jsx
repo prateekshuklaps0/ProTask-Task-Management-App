@@ -31,6 +31,7 @@ import { ListTemplate } from "../Components/ListTemplate";
 import { BoardTemplate } from "../Components/BoardTemplate";
 import { BiCustomize } from "react-icons/bi";
 import AddTask from "../Components/AddTask";
+import { ListbyUserID } from "../Components/ListbyUserID";
 
 const MyTasks = () => {
   const Bgcolor = localStorage.getItem("bg-color");
@@ -98,8 +99,8 @@ const MyTasks = () => {
                     <p className="text-center text-slate-500 text-sm mt-2">
                       you don't have any upcoming task
                     </p> */}
-                <AddTask />
-                <ListTemplate />
+                <AddTask /> 
+                <ListbyUserID />
               </TabPanel>
               <TabPanel>
                 {/* <img className="w-24 flex m-auto" src={check} alt="" />

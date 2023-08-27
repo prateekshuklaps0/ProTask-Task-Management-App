@@ -1,29 +1,20 @@
 import * as css from "../Styles/NavbarCss";
 import { Link as ScrollLink } from "react-scroll";
-import { NavLink, useLocation } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import { NavLink, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
 import {
   Box,
   Text,
   Image,
   Center,
-  Button,
   Avatar,
-  AvatarBadge,
-  AvatarGroup,
   InputGroup,
-  InputLeftAddon,
   InputLeftElement,
   Input,
-  InputRightAddon,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
 } from "@chakra-ui/react";
 
 import {
@@ -34,16 +25,43 @@ import {
 import Logo from "./Logo";
 import { Context } from "../Redux/Context";
 
+
+
 const Navbar = () => {
+
   const { token, setToken, loggedInUser, userNameLogged, setUserNameLogged } =
-    useContext(Context);
+  useContext(Context);
+  const navigate=useNavigate()
+  const logout=()=>{
+    setToken("")
+    navigate("/")
+  }
   const location = useLocation();
   const [searchInp, setSearchInp] = useState("");
-
+  const [isScrolled, setIsScrolled] = useState(false);
   const ScrollOffset = false ? -90 : false ? -100 : -120;
 
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <Box css={css.OuterBox} fontFamily="primaryf">
+    <Box
+      bg="greybg"
+      fontFamily="primaryf"
+      css={css.OuterBox(isScrolled, location.pathname)}
+    >
       <Box css={css.TopInnerCont}>
         <Logo fontSize={["20px", "22px", "26px"]} />
 
@@ -99,8 +117,8 @@ const Navbar = () => {
             </MenuButton>
             <MenuList>
               <Text css={css.NameText}>{`Hi ${userNameLogged} !`}</Text>
-              <MenuItem>
-                <Text css={css.MenuTextsCss}>Log Out</Text>
+              <MenuItem onClick={logout}>
+                <Text  css={css.MenuTextsCss}>Log Out</Text>
               </MenuItem>
             </MenuList>
           </Menu>
@@ -111,10 +129,14 @@ const Navbar = () => {
             </MenuButton>
             <MenuList>
               <MenuItem>
-                <NavLink css={css.MenuTextsCss}>Log In</NavLink>
+                <NavLink to="/login" css={css.MenuTextsCss}>
+                  Log In
+                </NavLink>
               </MenuItem>
               <MenuItem>
-                <NavLink css={css.MenuTextsCss}>Sign Up</NavLink>
+                <NavLink to="/signup" css={css.MenuTextsCss}>
+                  Sign Up
+                </NavLink>
               </MenuItem>
             </MenuList>
           </Menu>

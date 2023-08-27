@@ -83,4 +83,5 @@ export const delete_task = (token, projectId, id) => (dispatch) => {
             console.log(err);
             dispatch({ type: TASK_ERROR })
         })
+
 }

@@ -7,6 +7,9 @@ import { ListTemplate } from "./ListTemplate";
 import { BoardTemplate } from "./BoardTemplate";
 import { FaCalendarCheck, FaChevronDown } from "react-icons/fa";
 
+import Dashboard from "../Pages/Dashboard";
+
+
 export const NavTemplate = () => {
 
   const handleDelete = () => {
@@ -85,7 +88,7 @@ export const NavTemplate = () => {
             </TabPanel>
 
             <TabPanel>
-              <p>Dashboard!</p>
+              <Dashboard/>
             </TabPanel>
           </TabPanels>
         </Tabs>

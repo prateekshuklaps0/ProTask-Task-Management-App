@@ -3,8 +3,8 @@ import { useState, createContext } from "react";
 export const Context = createContext();
 
 const ContextProvider = ({ children }) => {
-  const [token, setToken] = useState("");
-  const [loggedInUser, setLoggedInUser] = useState({});
+  const [token, setToken] = useState(()=> localStorage.getItem("userDetails"));
+  const [loggedInUser, setLoggedInUser] = useState(()=> JSON.parse(localStorage.getItem("userDetails")));
   const [userNameLogged, setUserNameLogged] = useState("");
 
   return (
