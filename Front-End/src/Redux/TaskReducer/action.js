@@ -5,7 +5,7 @@ import { ADD_TASK, DELETE_TASK, GET_TASKS, TASK_ERROR, TASK_LOADING, UPDATE_TASK
 
 export const get_tasks = (token, projectId) => (dispatch) => {
     dispatch({ type: TASK_LOADING })
-    axios.get("http://localhost:8080/tasks", {
+    axios.get("https://pro-task.onrender.com/tasks", {
         headers: {
             Authorization: token,
             projectId: projectId
@@ -47,7 +47,7 @@ export const update_task = (token, projectId, id, data) => (dispatch) => {
 export const add_task = (token, projectId, data) => (dispatch) => {
     dispatch({ type: TASK_LOADING })
     axios.post(
-        "http://localhost:8080/tasks/addtask",
+        "https://pro-task.onrender.com/tasks/addtask",
         data,
         {
             headers: {
