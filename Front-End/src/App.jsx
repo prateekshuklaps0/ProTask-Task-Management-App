@@ -53,7 +53,7 @@ function App() {
           element={
             <PrivateRoute>
               <Profile />
-             </PrivateRoute>
+            </PrivateRoute>
           }
         />
 
