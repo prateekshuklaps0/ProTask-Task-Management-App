@@ -39,7 +39,14 @@ function App() {
 
         <Route path="*" element={<PageNotFound />} />
 
-        <Route path="/home" element={<Home_2 />} />
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute>
+              <Home_2 />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/task"
           element={
@@ -51,9 +58,9 @@ function App() {
         <Route
           path="/profile"
           element={
-            <PrivateRoute>
+            // <PrivateRoute>
               <Profile />
-            </PrivateRoute>
+            // </PrivateRoute>
           }
         />
 

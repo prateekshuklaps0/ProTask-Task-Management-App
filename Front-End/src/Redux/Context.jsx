@@ -4,7 +4,7 @@ export const Context = createContext();
 
 const ContextProvider = ({ children }) => {
   const [token, setToken] = useState("");
-  const [loggedInUser, setLoggedInUser] = useState({});
+  const [loggedInUser, setLoggedInUser] = useState(()=> localStorage.getItem('userDetails') || {});
   const [userNameLogged, setUserNameLogged] = useState("");
 
   return (

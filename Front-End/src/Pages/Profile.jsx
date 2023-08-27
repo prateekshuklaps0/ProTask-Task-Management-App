@@ -1,14 +1,21 @@
 import { Avatar, Button, Textarea } from "@chakra-ui/react";
 import React from "react";
+import { useContext } from "react";
 import { BiLock } from "react-icons/bi";
 import { BsClock, BsMailbox, BsMailbox2 } from "react-icons/bs";
 import { MdAllInbox, MdMail } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
 import SideBar from "../Components/SideBar";
-
+import { store } from "../Redux/Store";
+import { Context } from "../Redux/Context";
 const Profile = () => {
   const Bgcolor = localStorage.getItem("bg-color");
+  const dispatch = useDispatch();
+ const {loggedInUser} = useContext(Context)
 
-  return (
+ console.log(loggedInUser)
+  // console.log(userDetails)
+   return (
     <div className="flex ">
       <div>
         <SideBar />
