@@ -34,7 +34,7 @@ const Login = () => {
   const navigate = useNavigate();
   const pathComingFrom = location.state?.from?.pathname || "/";
 
-  const {setToken, setLoggedInUser, setUserNameLogged} = useContext(Context)
+  const {setToken,loggedInUser, setLoggedInUser, setUserNameLogged} = useContext(Context)
 
   const handleLogin = async () => {
     const credentials = { email, pass };
@@ -46,9 +46,14 @@ const Login = () => {
           payload: [res.data.userDetails, res.data.token]
         });
         console.log(res.data.userDetails)
-        setToken(res.data.token);
-        setLoggedInUser(res.data.userDetails);
-        setUserNameLogged(res.data.userDetails.name)
+        const userDetails = res.data.userDetails
+        // setToken(res.data.token);
+        // setLoggedInUser(userDetails);
+        // setUserNameLogged(res.data.userDetails.name)
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userDetails", JSON.stringify(res.data.userDetails));
+        // localStorage.setItem("token", res.data.token);
+
         if (res.data.msg === "User Doesn't Exists!") {
            toast.error("User Doesn't Exists!")
         } else if(res.data.msg==="Wrong Password!") {

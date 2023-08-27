@@ -73,7 +73,7 @@ const AddTask = () => {
             <FormControl isRequired mb="15px">
               <FormLabel color={"gray.600"}>Due Date</FormLabel>
               <Input
-                name="birthDate"
+                name="dueDate"
                 value={formData.dueDate}
                 onChange={handleChange}
                 type="date"
