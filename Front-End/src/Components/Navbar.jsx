@@ -117,8 +117,8 @@ const Navbar = () => {
             </MenuButton>
             <MenuList>
               <Text css={css.NameText}>{`Hi ${userNameLogged} !`}</Text>
-              <MenuItem>
-                <Text onClick={logout} css={css.MenuTextsCss}>Log Out</Text>
+              <MenuItem onClick={logout}>
+                <Text  css={css.MenuTextsCss}>Log Out</Text>
               </MenuItem>
             </MenuList>
           </Menu>
