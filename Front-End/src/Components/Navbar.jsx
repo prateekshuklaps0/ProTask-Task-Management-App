@@ -1,7 +1,7 @@
 import * as css from "../Styles/NavbarCss";
 import { Link as ScrollLink } from "react-scroll";
 import { NavLink, useLocation } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import {
   Box,
   Text,
@@ -24,18 +24,36 @@ import {
 
 import Logo from "./Logo";
 import { Context } from "../Redux/Context";
-import UserLogo from "./UserLogo";
 
 const Navbar = () => {
   const { token, setToken, loggedInUser, userNameLogged, setUserNameLogged } =
     useContext(Context);
   const location = useLocation();
   const [searchInp, setSearchInp] = useState("");
-
+  const [isScrolled, setIsScrolled] = useState(false);
   const ScrollOffset = false ? -90 : false ? -100 : -120;
 
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <Box css={css.OuterBox} fontFamily="primaryf">
+    <Box
+      bg="greybg"
+      fontFamily="primaryf"
+      css={css.OuterBox(isScrolled, location.pathname)}
+    >
       <Box css={css.TopInnerCont}>
         <Logo fontSize={["20px", "22px", "26px"]} />
 
@@ -76,11 +94,10 @@ const Navbar = () => {
               />
             </InputGroup>
           </Box>
-          
         )}
 
         {/* Log In & Sign Up */}
-        {token ? (
+        {!token ? (
           <Menu>
             <MenuButton>
               <Avatar
@@ -96,7 +113,6 @@ const Navbar = () => {
                 <Text css={css.MenuTextsCss}>Log Out</Text>
               </MenuItem>
             </MenuList>
-            <UserLogo/>
           </Menu>
         ) : (
           <Menu>
@@ -105,10 +121,14 @@ const Navbar = () => {
             </MenuButton>
             <MenuList>
               <MenuItem>
-                <NavLink to="/login" css={css.MenuTextsCss}>Log In</NavLink>
+                <NavLink to="/login" css={css.MenuTextsCss}>
+                  Log In
+                </NavLink>
               </MenuItem>
               <MenuItem>
-                <NavLink to="/signup" css={css.MenuTextsCss}>Sign Up</NavLink>
+                <NavLink to="/signup" css={css.MenuTextsCss}>
+                  Sign Up
+                </NavLink>
               </MenuItem>
             </MenuList>
           </Menu>
