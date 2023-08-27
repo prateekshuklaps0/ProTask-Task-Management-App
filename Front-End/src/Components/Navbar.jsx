@@ -25,9 +25,15 @@ import {
 import Logo from "./Logo";
 import { Context } from "../Redux/Context";
 
+
+
 const Navbar = () => {
+
   const { token, setToken, loggedInUser, userNameLogged, setUserNameLogged } =
-    useContext(Context);
+  useContext(Context);
+  const logout=()=>{
+    setToken("")
+  }
   const location = useLocation();
   const [searchInp, setSearchInp] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
@@ -97,7 +103,7 @@ const Navbar = () => {
         )}
 
         {/* Log In & Sign Up */}
-        {!token ? (
+        {token ? (
           <Menu>
             <MenuButton>
               <Avatar
@@ -110,7 +116,7 @@ const Navbar = () => {
             <MenuList>
               <Text css={css.NameText}>{`Hi ${userNameLogged} !`}</Text>
               <MenuItem>
-                <Text css={css.MenuTextsCss}>Log Out</Text>
+                <Text onClick={logout} css={css.MenuTextsCss}>Log Out</Text>
               </MenuItem>
             </MenuList>
           </Menu>

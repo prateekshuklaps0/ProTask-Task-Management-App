@@ -120,7 +120,7 @@ const Login = () => {
                 />
               </FormControl>
               <FormControl id="pass" isRequired>
-                <FormLabel mb={2}>pass</FormLabel>
+                <FormLabel mb={2}>Password</FormLabel>
                 <InputGroup>
                   <Input
                     type={showpass ? "text" : "pass"}

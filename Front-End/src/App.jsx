@@ -25,7 +25,6 @@ function App() {
       {/* Routes */}
       <Routes>
 
-        <Route path="/" element={<HomePage />} />
         <Route
           path="/temp"
           element={
