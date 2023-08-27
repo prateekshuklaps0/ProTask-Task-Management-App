@@ -44,9 +44,10 @@ const Home_2 = () => {
   const dispatch = useDispatch();
   const projects = useSelector((store) => store.projectReducer.projects);
   const tasks = useSelector((store) => store.taskReducer.tasks);
+  
 
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTg2NzNjNjAxM2U4MDNmN2RhNWEwMyIsImlhdCI6MTY5MzA0ODMzMn0.oxH99MF0dxPcGv-s53dPgG2wvj9qWa6Xijtb9Oeqol0";
+  const token = localStorage.getItem("token")
+   
 
   const projectId = "64e9df3be1cc48d363ff2686";
 

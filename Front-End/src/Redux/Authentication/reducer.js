@@ -12,12 +12,12 @@ const initialState = {
   signupLoading: false,
   LoginLoading: false,
   isAuth: false,
-  error: null,
-  userDetails: "",
+  error: false,
+  userDetails: {},
   token: "",
 };
 
-const authReducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SIGNUP_REQUEST:
       return {
@@ -44,30 +44,32 @@ const authReducer = (state = initialState, action) => {
         isAuth: false,
       };
     case Login_SUCCESS:
+     console.log(action.payload[0])
+    //  const usersdata= action.payload[0]
       return {
         ...state,
         LoginLoading: false,
         isAuth: true,
-        userDetails: action.payload[0],
+        userDetails: localStorage.getItem('userDetails'),
         token: action.payload[1],
       };
     case Login_FAILURE:
       return {
         ...state,
         LoginLoading: false,
-        error: action.payload,
+        error: true,
         isAuth:false
       };
     case LOGOUT:
       return {
         ...state,
         isAuth: false,
-        username: null,
-        email: "",
+        // username: null,
+        // email: "",
       };
     default:
       return state;
   }
 };
 
-export default authReducer;
+

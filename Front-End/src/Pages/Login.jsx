@@ -22,6 +22,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { LoginRequest } from "../Redux/Authentication/action";
 import { Login_SUCCESS } from "../Redux/Authentication/actionTypes";
+import { useContext } from "react";
+import { Context } from "../Redux/Context";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -32,6 +34,8 @@ const Login = () => {
   const navigate = useNavigate();
   const pathComingFrom = location.state?.from?.pathname || "/";
 
+  const {setToken, setLoggedInUser, setUserNameLogged} = useContext(Context)
+
   const handleLogin = async () => {
     const credentials = { email, pass };
 
@@ -39,21 +43,18 @@ const Login = () => {
       .then((res) => {
         dispatch({
           type: Login_SUCCESS,
-          payload: [res.data.userDetails, res.data.token],
+          payload: [res.data.userDetails, res.data.token]
         });
-        console.log(res.data)
+        console.log(res.data.userDetails)
+        setToken(res.data.token);
+        setLoggedInUser(res.data.userDetails);
+        setUserNameLogged(res.data.userDetails.name)
         if (res.data.msg === "User Doesn't Exists!") {
            toast.error("User Doesn't Exists!")
         } else if(res.data.msg==="Wrong Password!") {
           toast.error("Invalid credentials");
         }
-        else{
-          // (toast({
-          //   title: "Login Successfull.",
-          //   status: "success",
-          //   duration: 5000,
-          //   isClosable: true,
-          // }),
+        else{       
           toast.success("Login Successfull")
           navigate("/home")
         }
