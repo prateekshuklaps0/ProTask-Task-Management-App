@@ -6,7 +6,7 @@ import {store} from '../Redux/Store'
 
 const PrivateRoute = ({children}) => {
 
-    // const isAuth = useSelector((store) => store.authReducer.isAuth);
+    const isAuth = useSelector((store) => store.authReducer.isAuth);
     const {token} = useContext(Context)
 //   console.log(isAuth)
     if(!token){

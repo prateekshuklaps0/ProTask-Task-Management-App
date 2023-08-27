@@ -24,6 +24,8 @@ import {
 
 import Logo from "./Logo";
 import { Context } from "../Redux/Context";
+import { useDispatch } from "react-redux";
+import { LOGOUT } from "../Redux/Authentication/actionTypes";
 
 
 
@@ -32,14 +34,19 @@ const Navbar = () => {
   const { token, setToken, loggedInUser, userNameLogged, setUserNameLogged } =
   useContext(Context);
   const navigate=useNavigate()
+  const dispatch = useDispatch()
   const logout=()=>{
-    setToken("")
+    dispatch({type:LOGOUT})
+    setToken("");
+    localStorage.clear()
     navigate("/")
   }
+
+  // const username = loggedInUser.name
   const location = useLocation();
   const [searchInp, setSearchInp] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
-  const ScrollOffset = false ? -90 : false ? -100 : -120;
+  const ScrollOffset = false ? -90 : false ? -100 : -60;
 
   const handleScroll = () => {
     if (window.scrollY > 0) {
@@ -101,11 +108,18 @@ const Navbar = () => {
                 _focus={{ color: "greytext", borderColor: "greytext" }}
               />
             </InputGroup>
+
+
           </Box>
+
+          
         )}
 
         {/* Log In & Sign Up */}
         {token ? (
+          <Box className="flex items-center space-x-5 ">
+          {/* <Text css={css.NameText} fontWeight="semibold">{`Hi ${userNameLogged} !`}</Text> */}
+
           <Menu>
             <MenuButton>
               <Avatar
@@ -116,12 +130,18 @@ const Navbar = () => {
               />
             </MenuButton>
             <MenuList>
-              <Text css={css.NameText}>{`Hi ${userNameLogged} !`}</Text>
+              <Text css={css.NameText} pr="5px">{`Hi ${userNameLogged} !`}</Text>
+             <NavLink to='/profile'>
+              <MenuItem>
+                <Text  css={css.MenuTextsCss}>Profile</Text>
+              </MenuItem>
+              </NavLink>
               <MenuItem onClick={logout}>
                 <Text  css={css.MenuTextsCss}>Log Out</Text>
               </MenuItem>
             </MenuList>
           </Menu>
+          </Box>
         ) : (
           <Menu>
             <MenuButton>
