@@ -1,24 +1,86 @@
 import axios from "axios"
-import { GET_TASKS, TASK_ERROR, TASK_LOADING } from "./actionType"
+import { ADD_TASK, DELETE_TASK, GET_TASKS, TASK_ERROR, TASK_LOADING, UPDATE_TASK } from "./actionType"
 
 
 
-export const get_tasks=(token,projectId)=>(dispatch)=>{
-    dispatch({type:TASK_LOADING})
-   axios.get("http://localhost:8080/tasks",{
-    headers:{
-        Authorization: token,
-        projectId: "64e9df3be1cc48d363ff2686"
-    },
-    body: {projectId}
-    
-   })
-   .then((res) => {
-    console.log(res.data.TasksDataUserId)
-    dispatch({type:GET_TASKS, payload:res.data.TasksDataUserId})
-   })
-   .catch((err)=>{
-    console.log(err);
-    dispatch({type:TASK_ERROR})
-   })
+export const get_tasks = (token, projectId) => (dispatch) => {
+    dispatch({ type: TASK_LOADING })
+    axios.get("http://localhost:8080/tasks", {
+        headers: {
+            Authorization: token,
+            projectId: projectId
+        },
+        body: { projectId }
+
+    })
+        .then((res) => {
+            console.log(res.data.TasksDataUserId)
+            console.log(res.data.TasksDataProId)
+            dispatch({ type: GET_TASKS, payload: [res.data.TasksDataUserId, res.data.TasksDataProId] })
+        })
+        .catch((err) => {
+            console.log(err);
+            dispatch({ type: TASK_ERROR })
+        })
+}
+
+export const update_task = (token, projectId, id, data) => (dispatch) => {
+    dispatch({ type: TASK_LOADING })
+    axios.patch(`https://pro-task.onrender.com/tasks/update/${id}`, {
+        headers: {
+            Authorization: token,
+            projectId: projectId
+        },
+        body: JSON.stringify(data)
+    })
+        .then((res) => {
+            console.log("res data", res.data)
+            dispatch({ type: UPDATE_TASK })
+        })
+        .catch((err) => {
+            console.log(err);
+            dispatch({ type: TASK_ERROR })
+        })
+}
+
+
+export const add_task = (token, projectId, data) => (dispatch) => {
+    dispatch({ type: TASK_LOADING })
+    axios.post(
+        "http://localhost:8080/tasks/addtask",
+        data,
+        {
+            headers: {
+                Authorization: token,
+                projectId: projectId,
+            },
+        }
+    )
+        .then((res) => {
+            console.log("res data", res.data)
+            dispatch({ type: ADD_TASK })
+        })
+        .catch((err) => {
+            console.log(err);
+            dispatch({ type: TASK_ERROR })
+        })
+}
+
+
+export const delete_task = (token, projectId, id) => (dispatch) => {
+    dispatch({ type: TASK_LOADING })
+    axios.delete(`https://pro-task.onrender.com/tasks/delete/${id}`, {
+        headers: {
+            Authorization: token,
+            projectId: projectId
+        },
+    })
+        .then((res) => {
+            console.log("res data", res.data)
+            dispatch({ type: DELETE_TASK })
+        })
+        .catch((err) => {
+            console.log(err);
+            dispatch({ type: TASK_ERROR })
+        })
 }

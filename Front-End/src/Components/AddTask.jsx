@@ -23,25 +23,26 @@ const AddTask = () => {
     title: "",
     description: "",
     dueDate: "",
+    status: "todo"
   };
   const [formData, setFormData] = useState(initData);
 
 
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    const handleChange = (e) => {
-      setFormData({
-        ...formData,
-        [e.target.name]: e.target.value,
-      });
-    };
-  
 
-  console.log(formData);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onClose();
   };
+
   return (
     <>
       <Button leftIcon={<MdAdd />} onClick={onOpen} size="sm" mb="20px">
@@ -73,7 +74,7 @@ const AddTask = () => {
             <FormControl isRequired mb="15px">
               <FormLabel color={"gray.600"}>Due Date</FormLabel>
               <Input
-                name="birthDate"
+                name="dueDate"
                 value={formData.dueDate}
                 onChange={handleChange}
                 type="date"
