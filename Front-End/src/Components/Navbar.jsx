@@ -1,6 +1,6 @@
 import * as css from "../Styles/NavbarCss";
 import { Link as ScrollLink } from "react-scroll";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import {
   Box,
@@ -25,9 +25,17 @@ import {
 import Logo from "./Logo";
 import { Context } from "../Redux/Context";
 
+
+
 const Navbar = () => {
+
   const { token, setToken, loggedInUser, userNameLogged, setUserNameLogged } =
-    useContext(Context);
+  useContext(Context);
+  const navigate=useNavigate()
+  const logout=()=>{
+    setToken("")
+    navigate("/")
+  }
   const location = useLocation();
   const [searchInp, setSearchInp] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
@@ -109,8 +117,8 @@ const Navbar = () => {
             </MenuButton>
             <MenuList>
               <Text css={css.NameText}>{`Hi ${userNameLogged} !`}</Text>
-              <MenuItem>
-                <Text css={css.MenuTextsCss}>Log Out</Text>
+              <MenuItem onClick={logout}>
+                <Text  css={css.MenuTextsCss}>Log Out</Text>
               </MenuItem>
             </MenuList>
           </Menu>

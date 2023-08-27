@@ -19,46 +19,73 @@ import { useDispatch } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import logo from "../Images/Logo.png";
-import { signupRequest } from "../Redux/Authentication/action";
+import { signup } from "../Redux/Authentication/action";
+import { SIGNUP_SUCCESS } from "../Redux/Authentication/actionTypes";
 
 const SignUp = () => {
-  const [username, setUsername] = useState("");
+  const [name, setname] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [pass, setPass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSignUp = async () => {
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
-      return;
-    }
-
+  const handleSignUp = () => {
     const userData = {
-      username: username,
-      email: email,
-      password: password,
+      name,
+      email,
+      pass,
     };
 
-    try {
-      const success = await dispatch(signupRequest(userData));
-
-      if (success) {
-        toast.success("Account created successfully");
-        setTimeout(() => {
-          navigate("/login");
-          console.log("Account created");
-        }, 2000);
-      } else {
-        toast.error("Username or email already exits");
-      }
-    } catch (error) {
-      toast.error("Something went wrong. Please try again later.");
-    }
+    dispatch(signup(userData))
+      .then((response) => {
+        dispatch({ type: SIGNUP_SUCCESS });
+        console.log(response.data.message);
+        if (response.data.message === "Email Already Registered!") {
+          toast.error("Username or email already exits");
+        } else if (response.data.msg == "User Registered Sucessfully!") {
+          toast.success("Account created successfully");
+          setTimeout(() => {
+            navigate("/login");
+            console.log("Account created");
+          }, 2000);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Something went wrong. Please try again later.");
+      });
   };
+  // const handleSignUp = async () => {
+  //   if (password !== confirmPassword) {
+  //     toast.error("Passwords do not match");
+  //     return;
+  //   }
+
+  //   const userData = {
+  //     username: username,
+  //     email: email,
+  //     password: password,
+  //   };
+
+  //   try {
+  //     const success = await dispatch(signupRequest(userData));
+
+  //     if (success) {
+  //       toast.success("Account created successfully");
+  //       setTimeout(() => {
+  //         navigate("/login");
+  //         console.log("Account created");
+  //       }, 2000);
+  //     } else {
+  //       toast.error("Username or email already exits");
+  //     }
+  //   } catch (error) {
+  //     toast.error("Something went wrong. Please try again later.");
+  //   }
+  // };
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
@@ -71,7 +98,7 @@ const SignUp = () => {
   return (
     <>
       <ToastContainer />
-      
+
       <Flex minH={"100vh"} align={"center"} justify={"center"} bg={"gray.100"}>
         <Box
           w={"80%"}
@@ -97,8 +124,8 @@ const SignUp = () => {
                 <FormLabel mb={2}>Username</FormLabel>
                 <Input
                   type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={name}
+                  onChange={(e) => setname(e.target.value)}
                   size="md"
                 />
               </FormControl>
@@ -116,8 +143,8 @@ const SignUp = () => {
                 <InputGroup>
                   <Input
                     type={showPassword ? "text" : "password"}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={pass}
+                    onChange={(e) => setPass(e.target.value)}
                     size="md"
                   />
                   <InputRightElement width="3rem">
@@ -134,8 +161,8 @@ const SignUp = () => {
                 <InputGroup>
                   <Input
                     type={showConfirmPassword ? "text" : "password"}
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    value={confirmPass}
+                    onChange={(e) => setConfirmPass(e.target.value)}
                     size="md"
                   />
                   <InputRightElement width="3rem">
