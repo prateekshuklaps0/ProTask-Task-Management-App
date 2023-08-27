@@ -42,7 +42,7 @@ const Navbar = () => {
     navigate("/")
   }
 
-  const username = loggedInUser.name
+  // const username = loggedInUser.name
   const location = useLocation();
   const [searchInp, setSearchInp] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
@@ -118,19 +118,19 @@ const Navbar = () => {
         {/* Log In & Sign Up */}
         {token ? (
           <Box className="flex items-center space-x-5 ">
-                        <Text css={css.NameText} fontWeight="semibold">{`Hi ${username} !`}</Text>
+          {/* <Text css={css.NameText} fontWeight="semibold">{`Hi ${userNameLogged} !`}</Text> */}
 
           <Menu>
             <MenuButton>
               <Avatar
-                name={username}
+                name={userNameLogged}
                 size={["xs", "xs", "sm"]}
                 bg="primary"
                 color="white"
               />
             </MenuButton>
             <MenuList>
-              {/* <Text css={css.NameText}>{`Hi ${username} !`}</Text> */}
+              <Text css={css.NameText} pr="5px">{`Hi ${userNameLogged} !`}</Text>
              <NavLink to='/profile'>
               <MenuItem>
                 <Text  css={css.MenuTextsCss}>Profile</Text>

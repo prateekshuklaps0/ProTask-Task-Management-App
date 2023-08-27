@@ -50,9 +50,7 @@ const Login = () => {
         setToken(res.data.token);
         setLoggedInUser(userDetails);
         setUserNameLogged(res.data.userDetails.name)
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("userDetails", JSON.stringify(res.data.userDetails));
-        // localStorage.setItem("token", res.data.token);
+    
 
         if (res.data.msg === "User Doesn't Exists!") {
            toast.error("User Doesn't Exists!")
