@@ -47,9 +47,9 @@ const Login = () => {
         });
         console.log(res.data.userDetails)
         const userDetails = res.data.userDetails
-        // setToken(res.data.token);
-        // setLoggedInUser(userDetails);
-        // setUserNameLogged(res.data.userDetails.name)
+        setToken(res.data.token);
+        setLoggedInUser(userDetails);
+        setUserNameLogged(res.data.userDetails.name)
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("userDetails", JSON.stringify(res.data.userDetails));
         // localStorage.setItem("token", res.data.token);
