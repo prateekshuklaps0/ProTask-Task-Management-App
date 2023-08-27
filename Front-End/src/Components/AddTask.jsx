@@ -23,25 +23,26 @@ const AddTask = () => {
     title: "",
     description: "",
     dueDate: "",
+    status: "todo"
   };
   const [formData, setFormData] = useState(initData);
 
 
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    const handleChange = (e) => {
-      setFormData({
-        ...formData,
-        [e.target.name]: e.target.value,
-      });
-    };
-  
 
-  console.log(formData);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onClose();
   };
+
   return (
     <>
       <Button leftIcon={<MdAdd />} onClick={onOpen} size="sm" mb="20px">
