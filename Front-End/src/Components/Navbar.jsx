@@ -1,6 +1,6 @@
 import * as css from "../Styles/NavbarCss";
 import { Link as ScrollLink } from "react-scroll";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import {
   Box,
@@ -31,8 +31,10 @@ const Navbar = () => {
 
   const { token, setToken, loggedInUser, userNameLogged, setUserNameLogged } =
   useContext(Context);
+  const navigate=useNavigate()
   const logout=()=>{
     setToken("")
+    navigate("/")
   }
   const location = useLocation();
   const [searchInp, setSearchInp] = useState("");

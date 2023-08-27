@@ -123,7 +123,7 @@ const Login = () => {
                 <FormLabel mb={2}>Password</FormLabel>
                 <InputGroup>
                   <Input
-                    type={showpass ? "text" : "pass"}
+                    type={showpass ? "text" : "Password"}
                     value={pass}
                     onChange={(e) => setPass(e.target.value)}
                     size="md"
