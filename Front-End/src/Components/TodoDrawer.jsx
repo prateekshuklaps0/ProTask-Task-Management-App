@@ -9,8 +9,8 @@ export function TodoDrawer(el) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
     const dispatch = useDispatch()
-    const { loggedInUser } = useContext(Context)
-    const token = localStorage.getItem("token")
+    const { token } = useContext(Context)
+    // const token = localStorage.getItem("token")
 
     const [data, setData] = useState(el)
 
@@ -21,11 +21,11 @@ export function TodoDrawer(el) {
         })
     }
 
-
+    console.log("My token", token)
 
     const handleUpdate = () => {
         onClose()
-        //  dispatch(update_task(token, data.projectId, data._id, data))
+        dispatch(update_task(token, data.projectId, data._id, data))
 
     }
 
