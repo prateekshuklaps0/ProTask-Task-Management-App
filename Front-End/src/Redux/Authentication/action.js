@@ -14,7 +14,7 @@ export const signupRequest = (userData) => {
     dispatch({ type: SIGNUP_REQUEST });
     try {
       const response = await axios.get(
-        "https://gorgeous-flight-api1.onrender.com/users"
+        "https://pro-task.onrender.com/users/signup"
       );
       const users = response.data;
       console.log(users);
@@ -28,7 +28,7 @@ export const signupRequest = (userData) => {
       }
 
       const createUserResponse = await axios.post(
-        "https://gorgeous-flight-api1.onrender.com/users",
+        "https://pro-task.onrender.com/users/signup",
         userData
       );
       const newUser = createUserResponse.data;
@@ -51,7 +51,7 @@ export const LoginRequest = (credentials) => {
     dispatch({ type: Login_REQUEST });
     try {
       const response = await axios.get(
-        "https://gorgeous-flight-api1.onrender.com/users"
+        "https://pro-task.onrender.com/users/login"
       );
       const users = response.data;
       const user = users.find(
