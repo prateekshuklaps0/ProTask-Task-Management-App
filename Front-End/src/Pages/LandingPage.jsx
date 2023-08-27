@@ -1,11 +1,33 @@
 import * as css from "../Styles/LandingPageCss";
 import { useEffect, useState } from "react";
-import { Box, Text, Link, Button, Image } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Link,
+  Button,
+  Image,
+  Center,
+  Tabs,
+  TabList,
+  TabPanels,
+  TabIndicator,
+  Tab,
+  TabPanel,
+} from "@chakra-ui/react";
+import { BsCheck2Circle as CheckIcon } from "react-icons/bs";
 
-import TopMiddleImg from "../Images/LandingPage/TopMiddleImg.png";
 import Footer from "../Components/Footer";
 
+import TopMiddleImg from "../Images/LandingPage/TopMiddleImg.png";
+import MarketingImg from "../Images/LandingPage/Marketing.webp";
+import ITimg from "../Images/LandingPage/IT.webp";
+import OperationsImg from "../Images/LandingPage/Operations.webp";
+import ProjectManageImg from "../Images/LandingPage/ProjectManager.webp";
+import StrategicImg from "../Images/LandingPage/Strategic.webp";
+
 const LandingPage = () => {
+  const [activeWorkflow, setActiveWorkflow] = useState("marketing");
+
   return (
     <Box fontFamily="primaryf" css={css.OuterBox}>
       {/* Top Part */}
@@ -26,7 +48,7 @@ const LandingPage = () => {
         >
           Get Started
         </Button>
-        <Box css={css.ImageParentOuterTop}>
+        <Box css={css.ImageParentOuterTop} id="features">
           <Box css={css.SideImageConts("Left")}>
             <Image
               css={css.SoloSideImage}
@@ -67,6 +89,72 @@ const LandingPage = () => {
         </Box>
       </Box>
 
+      {/* Workflow */}
+      <Box id="workflow">
+        <Box css={css.WorkflowOuter}>
+          <Text color="blacktext" css={css.WorkflowHead}>
+            See how teams use ProTask
+          </Text>
+          <Tabs variant="unstyled">
+            <TabList css={css.TabsNameCont}>
+              <Tab
+                color={activeWorkflow == "marketing" ? "blacktext" : "greytext"}
+                onClick={() => setActiveWorkflow("marketing")}
+                _hover={{ color: "blacktext" }}
+                css={css.TabsTextCss}
+              >
+                Marketing teams
+              </Tab>
+              <Tab
+                color={activeWorkflow == "it" ? "blacktext" : "greytext"}
+                onClick={() => setActiveWorkflow("it")}
+                _hover={{ color: "blacktext" }}
+                css={css.TabsTextCss}
+              >
+                IT teams
+              </Tab>
+              <Tab
+                color={activeWorkflow == "operation" ? "blacktext" : "greytext"}
+                onClick={() => setActiveWorkflow("operation")}
+                _hover={{ color: "blacktext" }}
+                css={css.TabsTextCss}
+              >
+                Operations teams
+              </Tab>
+              <Tab
+                color={activeWorkflow == "project" ? "blacktext" : "greytext"}
+                onClick={() => setActiveWorkflow("project")}
+                _hover={{ color: "blacktext" }}
+                display={["none", "inline"]}
+                css={css.TabsTextCss}
+              >
+                Project management
+              </Tab>
+              <Tab
+                color={activeWorkflow == "strategic" ? "blacktext" : "greytext"}
+                onClick={() => setActiveWorkflow("strategic")}
+                _hover={{ color: "blacktext" }}
+                display={["none", "inline"]}
+                css={css.TabsTextCss}
+              >
+                Strategic planning
+              </Tab>
+            </TabList>
+            <TabIndicator
+              mt="-3.5px"
+              height={["3px", "4px"]}
+              bg="blacktext"
+              borderRadius="50px"
+            />
+            <TabPanels>
+              {WorkFlowData.map((item, ind) => (
+                <WorkflowCard {...item} ind={ind} key={item.title + ind} />
+              ))}
+            </TabPanels>
+          </Tabs>
+        </Box>
+      </Box>
+
       {/* Footer */}
       <Footer />
     </Box>
@@ -74,3 +162,89 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
+
+const WorkflowCard = ({ title, pointers, btnText, img, ind }) => {
+  return (
+    <TabPanel display={ind >= 3 ? "none" : "inline"}>
+      <Box css={css.WorkflowCardOuter}>
+        <Box bg="greybg" css={css.CardLeftBox}>
+          <Text css={css.TitleWorkflow}>{title}</Text>
+          <Box
+            w={["250px", "180px", "250px", "190px", "250px"]}
+            mt={["15px", "18px", "20px"]}
+            mb={["18px", "22px", "25px"]}
+            borderTop="1px solid #727272"
+          ></Box>
+          {pointers.map((item, ind) => (
+            <Text css={css.PointersWorkflow} key={item}>
+              <Image as={CheckIcon} /> {item}
+            </Text>
+          ))}
+          <Button
+            mb={["30px", "30px", "40px", "none"]}
+            bg="blacktext"
+            _hover={{ bg: "primary" }}
+            css={css.TopGetStartedBtn}
+          >
+            {btnText}
+          </Button>
+        </Box>
+        <Center css={css.CardRightBox}>
+          <Image w="90%" src={img} />
+        </Center>
+      </Box>
+    </TabPanel>
+  );
+};
+
+const WorkFlowData = [
+  {
+    title: "Deliver impactful marketing strategies",
+    pointers: [
+      "Collaborate on cross-team work for campaigns",
+      "Help teams quickly refocus around shifting business needs",
+      "Automate processes for approvals",
+    ],
+    btnText: "Explore marketing",
+    img: MarketingImg,
+  },
+  {
+    title: "Automate and streamline IT requests",
+    pointers: [
+      "Reduce digital friction for better team velocity",
+      "Get more control for critical security needs",
+      "Streamline workflows accross teams",
+    ],
+    btnText: "Explore IT",
+    img: ITimg,
+  },
+  {
+    title: "Drive operational efficiency",
+    pointers: [
+      "Track work and see progress in real time",
+      "Standardize and automate processes",
+      "Unblock teams to hit revenue goals",
+    ],
+    btnText: "Explore operations",
+    img: OperationsImg,
+  },
+  {
+    title: "Manage projects more efficiently",
+    pointers: [
+      "Remove silos for better collaboration",
+      "Spot project gaps to instantly pivot and stay on track",
+      "Track resources, goals and progress in one place",
+    ],
+    btnText: "Explore project management",
+    img: ProjectManageImg,
+  },
+  {
+    title: "Align teams to execute winning strategies",
+    pointers: [
+      "Set anual plans to deliver results",
+      "See real-time insights to stay on track and on budget",
+    ],
+    btnText: "Explore strategic planning",
+    img: StrategicImg,
+  },
+];
