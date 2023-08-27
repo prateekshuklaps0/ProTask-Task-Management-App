@@ -43,7 +43,7 @@ const Home_2 = () => {
   );
   const dispatch = useDispatch();
   const projects = useSelector((store) => store.projectReducer.projects);
-  const tasks = useSelector((store) => store.taskReducer.tasks);
+  const tasks = useSelector((store) => store.taskReducer.tasksbyUserId);
   
 
   const token = localStorage.getItem("token")
