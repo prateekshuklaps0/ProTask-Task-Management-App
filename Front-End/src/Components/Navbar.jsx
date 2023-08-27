@@ -31,7 +31,7 @@ const Navbar = () => {
   const location = useLocation();
   const [searchInp, setSearchInp] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
-  const ScrollOffset = false ? -90 : false ? -100 : -120;
+  const ScrollOffset = false ? -90 : false ? -100 : -60;
 
   const handleScroll = () => {
     if (window.scrollY > 0) {
@@ -97,7 +97,7 @@ const Navbar = () => {
         )}
 
         {/* Log In & Sign Up */}
-        {!token ? (
+        {token ? (
           <Menu>
             <MenuButton>
               <Avatar

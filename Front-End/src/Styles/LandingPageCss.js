@@ -226,6 +226,204 @@ export const SmallScreenTopImgsCont = css`
   }
 `;
 
+// Workflow Css ********************************
+export const WorkflowOuter = css`
+  margin: auto;
+  width: 87%;
+  text-align: center;
+  margin-top: 50px;
+
+  @media (max-width: 992px) {
+    margin-top: 40px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 25px;
+  }
+  @media (max-width: 480px) {
+    margin-top: 15px;
+  }
+`;
+export const WorkflowHead = css`
+  margin-bottom: 35px;
+  text-align: center;
+  font-size: 54px;
+  line-height: 70px;
+  letter-spacing: -0.3px;
+
+  @media (max-width: 992px) {
+    margin-bottom: 28px;
+    font-size: 47px;
+    line-height: 70px;
+    letter-spacing: -0px;
+  }
+  @media (max-width: 768px) {
+    margin-bottom: 15px;
+    font-size: 35px;
+    line-height: 55px;
+  }
+  @media (max-width: 480px) {
+    margin-bottom: 10px;
+    font-size: 28px;
+    line-height: 40px;
+  }
+`;
+export const TabsNameCont = css`
+  display: inline-flex;
+  margin: auto;
+  text-align: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #cfcbcb;
+
+  @media (max-width: 992px) {
+  }
+  @media (max-width: 768px) {
+    padding-bottom: 13px;
+  }
+  @media (max-width: 480px) {
+    padding-bottom: 8px;
+  }
+`;
+export const TabsTextCss = css`
+  font-size: 24px;
+  width: 200px;
+
+  @media (max-width: 1280px) {
+    width: 150px;
+  }
+  @media (max-width: 992px) {
+    font-size: 22px;
+    width: 130px;
+  }
+  @media (max-width: 768px) {
+    font-size: 15px;
+    width: 85px;
+  }
+  @media (max-width: 480px) {
+    font-size: 14px;
+    width: 85px;
+  }
+`;
+export const WorkflowCardOuter = css`
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+  overflow: hidden;
+  border-radius: 14px;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    border-radius: 10px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 15px;
+    border-radius: 8px;
+  }
+  @media (max-width: 480px) {
+    margin-top: 3px;
+    border-radius: 6px;
+  }
+`;
+export const CardLeftBox = css`
+  width: 50%;
+  text-align: left;
+  height: 522px;
+  padding-left: 110px;
+  padding-right: 70px;
+
+  @media (max-width: 1280px) {
+    padding-left: 60px;
+    padding-right: 50px;
+  }
+  @media (max-width: 992px) {
+    height: 420px;
+    width: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  @media (max-width: 768px) {
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 380px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  @media (max-width: 480px) {
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 350px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+`;
+export const TitleWorkflow = css`
+  padding-top: 65px;
+  font-size: 32px;
+  line-height: 48px;
+  width: 80%;
+
+  @media (max-width: 1280px) {
+    padding-top: 35px;
+  }
+  @media (max-width: 992px) {
+  }
+  @media (max-width: 768px) {
+    padding-top: 20px;
+    font-size: 28px;
+    line-height: 38px;
+    width: 100%;
+  }
+  @media (max-width: 480px) {
+    padding-top: 15px;
+    font-size: 22px;
+    line-height: 32px;
+  }
+`;
+export const PointersWorkflow = css`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  margin-top: 5px;
+
+  @media (max-width: 992px) {
+  }
+  @media (max-width: 768px) {
+    gap: 12px;
+    font-size: 16px;
+    margin-top: 5px;
+  }
+  @media (max-width: 480px) {
+    gap: 12px;
+    font-size: 15px;
+    margin-top: 6px;
+  }
+`;
+export const CardRightBox = css`
+  height: 522px;
+  width: 50%;
+  background-image: url(https://assets.asana.biz/transform/63685835-0033-48c5-89ce-a606a09ce27c/homepage-hero-greybg-en-3x);
+  background-size: cover;
+
+  @media (max-width: 992px) {
+    height: auto;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 30px 0px;
+    overflow: hidden;
+  }
+  @media (max-width: 768px) {
+    padding: 25px 0px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  @media (max-width: 480px) {
+    padding: 20px 0px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+`;
+
 /* 
 
 export const Temp = css`
