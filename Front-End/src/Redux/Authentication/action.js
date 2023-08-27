@@ -9,42 +9,47 @@ import {
   LOGOUT,
 } from "./actionTypes";
 // Signup Actions
-export const signupRequest = (userData) => {
-  return async (dispatch) => {
-    dispatch({ type: SIGNUP_REQUEST });
-    try {
-      const response = await axios.get(
-        "https://pro-task.onrender.com/users/signup"
-      );
-      const users = response.data;
-      console.log(users);
-      const existingUser = users.find(
-        (user) =>
-          user.username === userData.username || user.email === userData.email
-      );
 
-      if (existingUser) {
-        throw new Error("Username or email already exists");
-      }
+export const signup = (user)=>(dispatch)=> {
+  dispatch({type: SIGNUP_REQUEST})
+   return axios.post("http://localhost:8080/users/signup", user)
+}
+// export const signupRequest = (userData) => {
+//   return async (dispatch) => {
+//     dispatch({ type: SIGNUP_REQUEST });
+//     try {
+//       const response = await axios.get(
+//         "https://pro-task.onrender.com/users/signup"
+//       );
+//       const users = response.data;
+//       console.log(users);
+//       const existingUser = users.find(
+//         (user) =>
+//           user.username === userData.username || user.email === userData.email
+//       );
 
-      const createUserResponse = await axios.post(
-        "https://pro-task.onrender.com/users/signup",
-        userData
-      );
-      const newUser = createUserResponse.data;
+//       if (existingUser) {
+//         throw new Error("Username or email already exists");
+//       }
 
-      if (newUser) {
-        dispatch({ type: SIGNUP_SUCCESS });
-        return true;
-      } else {
-        throw new Error("Failed to create account");
-      }
-    } catch (error) {
-      dispatch({ type: SIGNUP_FAILURE, payload: error.message });
-      return false;
-    }
-  };
-};
+//       const createUserResponse = await axios.post(
+//         "https://pro-task.onrender.com/users/signup",
+//         userData
+//       );
+//       const newUser = createUserResponse.data;
+
+//       if (newUser) {
+//         dispatch({ type: SIGNUP_SUCCESS });
+//         return true;
+//       } else {
+//         throw new Error("Failed to create account");
+//       }
+//     } catch (error) {
+//       dispatch({ type: SIGNUP_FAILURE, payload: error.message });
+//       return false;
+//     }
+//   };
+// };
 // Login Actions
 export const LoginRequest = (credentials) => {
   return async (dispatch) => {

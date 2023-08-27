@@ -40,18 +40,21 @@ userRoute.post("/signup", async (req, res) => {
 
     const found = await UserModel.findOne({ email });
     if (found) {
-      return res.status(400).json({ message: "Email Already Registered!" });
+      res.json({ message: "Email Already Registered!" });
+    }
+    else{
+      const hashed = await bcrypt.hash(pass, 10);
+
+      const UserData = UserModel({ ...req.body, pass: hashed });
+      await UserData.save();
+  
+      res.status(201).json({
+        msg: "User Registered Sucessfully!",
+        RegisteredUser: UserData,
+      });
     }
 
-    const hashed = await bcrypt.hash(pass, 10);
-
-    const UserData = UserModel({ ...req.body, pass: hashed });
-    await UserData.save();
-
-    res.status(201).json({
-      msg: "User Registered Sucessfully!",
-      RegisteredUser: UserData,
-    });
+   
   } catch (error) {
     console.error("SignUp Error :", error);
     res.status(500).json({ msg: "SignUp Error" });
