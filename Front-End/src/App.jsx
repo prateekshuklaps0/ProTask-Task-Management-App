@@ -47,7 +47,16 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path="/profile" element={<Profile />} />
+
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+             </PrivateRoute>
+          }
+        />
+
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
