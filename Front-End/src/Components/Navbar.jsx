@@ -24,7 +24,6 @@ import {
 
 import Logo from "./Logo";
 import { Context } from "../Redux/Context";
-import UserLogo from "./UserLogo";
 
 const Navbar = () => {
   const { token, setToken, loggedInUser, userNameLogged, setUserNameLogged } =
@@ -98,7 +97,7 @@ const Navbar = () => {
         )}
 
         {/* Log In & Sign Up */}
-        {token ? (
+        {!token ? (
           <Menu>
             <MenuButton>
               <Avatar
@@ -114,7 +113,6 @@ const Navbar = () => {
                 <Text css={css.MenuTextsCss}>Log Out</Text>
               </MenuItem>
             </MenuList>
-            <UserLogo />
           </Menu>
         ) : (
           <Menu>
