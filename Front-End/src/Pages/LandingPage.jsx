@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { Box, Text, Link, Button, Image } from "@chakra-ui/react";
 
 import TopMiddleImg from "../Images/LandingPage/TopMiddleImg.png";
+import Footer from "../Components/Footer";
 
 const LandingPage = () => {
   return (
-    <Box fontFamily="primaryf" paddingBottom="500px" css={css.OuterBox}>
+    <Box fontFamily="primaryf" css={css.OuterBox}>
       {/* Top Part */}
       <Box bg="greybg" css={css.OuterTopPart}>
         <Text color="blacktext" css={css.TopText}>
@@ -65,6 +66,9 @@ const LandingPage = () => {
           </Box>
         </Box>
       </Box>
+
+      {/* Footer */}
+      <Footer />
     </Box>
   );
 };

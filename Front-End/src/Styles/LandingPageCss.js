@@ -5,7 +5,7 @@ export const OuterBox = css`
   width: 100%;
 `;
 
-// Top Part Css
+// Top Part Css ******************************
 export const OuterTopPart = css`
   text-align: center;
   overflow: hidden;
