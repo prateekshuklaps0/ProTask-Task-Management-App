@@ -5,7 +5,7 @@ import { GET_TASKS, TASK_ERROR, TASK_LOADING } from "./actionType"
 
 export const get_tasks=(token,projectId)=>(dispatch)=>{
     dispatch({type:TASK_LOADING})
-   axios.get("http://localhost:8080/tasks",{
+   axios.get("https://pro-task.onrender.com/tasks",{
     headers:{
         Authorization: token,
         projectId: "64e9df3be1cc48d363ff2686"
