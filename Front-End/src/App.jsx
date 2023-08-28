@@ -47,7 +47,6 @@ function App() {
             </PrivateRoute>
           }
         />
-
         <Route
           path="/profile"
           element={
@@ -56,7 +55,6 @@ function App() {
             </PrivateRoute>
           }
         />
-
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
