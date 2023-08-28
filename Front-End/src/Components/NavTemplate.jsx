@@ -13,7 +13,7 @@ import Dashboard from "../Pages/Dashboard";
 export const NavTemplate = () => {
 
   const handleDelete = () => {
-      
+
   }
 
 
@@ -26,7 +26,7 @@ export const NavTemplate = () => {
             <FaCalendarCheck size={"20px"} color="#8D6E63" />
 
             <Heading size={"sm"} color="gray.700">
-              PROJECT NAME
+              Project-1
             </Heading>
             <Box ml={"10px"} >
 
@@ -88,7 +88,7 @@ export const NavTemplate = () => {
             </TabPanel>
 
             <TabPanel>
-              <Dashboard/>
+              <Dashboard />
             </TabPanel>
           </TabPanels>
         </Tabs>
