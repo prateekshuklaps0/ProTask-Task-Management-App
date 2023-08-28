@@ -45,11 +45,12 @@ const Login = () => {
           type: Login_SUCCESS,
           payload: [res.data.userDetails, res.data.token]
         });
-        console.log(res.data.userDetails)
+        console.log(res.data.token)
         const userDetails = res.data.userDetails
         setToken(res.data.token);
         setLoggedInUser(userDetails);
-        setUserNameLogged(res.data.userDetails.name)
+        setUserNameLogged(res.data.userDetails.name);
+        localStorage.setItem('token', res.data.token);
     
 
         if (res.data.msg === "User Doesn't Exists!") {

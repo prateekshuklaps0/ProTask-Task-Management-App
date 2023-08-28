@@ -25,11 +25,13 @@ import { RiNotification3Line } from "react-icons/ri";
 import { BiSolidSquareRounded } from "react-icons/bi";
 import { MdAddBox } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const SideBar = () => {
   //   const { isOpen, onOpen, onClose } = useDisclosure();
   //   const btnRef = React.useRef();
   const [isOpen, setIsOpen] = useState(true);
+  const projects = useSelector((store) => store.projectReducer.projects);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -69,9 +71,15 @@ const SideBar = () => {
               </span>
               <MdAddBox fontWeight={"bold"} cursor="pointer" color="gray" />
             </li>
-            <NavLink to="/temp">
-              {" "}
-              <li className="flex items-center space-x-2 mt-3 pl-2 pt-1 pr-1 pb-1 box-border cursor-pointer hover:bg-slate-200 rounded-md active:bg-slate-50">
+            {projects.map((el) => (
+              <NavLink to={`/temp/:${el._id}`}>
+                <li className="flex items-center space-x-2 mt-3 pl-2 pt-1 pr-1 pb-1 box-border cursor-pointer hover:bg-slate-200 rounded-md active:bg-slate-50">
+                  <BiSolidSquareRounded className="text-orange-300" />
+                  <span>{el.title}</span>
+                </li>
+              </NavLink>
+            ))}{" "}
+            {/* <li className="flex items-center space-x-2 mt-3 pl-2 pt-1 pr-1 pb-1 box-border cursor-pointer hover:bg-slate-200 rounded-md active:bg-slate-50">
                 <BiSolidSquareRounded className="text-orange-300" />
                 <span>Project-1</span>
               </li>
@@ -83,7 +91,7 @@ const SideBar = () => {
             <li className="flex items-center space-x-2 pl-2 pt-1 pr-1 pb-1 box-border cursor-pointer hover:bg-slate-200 rounded-md active:bg-slate-50">
               <BiSolidSquareRounded className="text-purple-500" />
               <span>Project-3</span>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { GET_PROJECTS, PROJECT_ERROR, PROJECT_LOADING } from "./actionType"
 
 export const get_projects = (token) => (dispatch) => {
     dispatch({ type: PROJECT_LOADING })
-    axios.get("http://localhost:8080/projects", {
+    axios.get("https://pro-task.onrender.com/projects", {
         headers: {
             Authorization: token
         }

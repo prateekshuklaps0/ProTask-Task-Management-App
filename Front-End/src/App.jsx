@@ -22,7 +22,7 @@ function App() {
       {/* Routes */}
       <Routes>
         <Route
-          path="/temp"
+          path="/temp/:id"
           element={
             <PrivateRoute>
               <Template />
