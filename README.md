@@ -1,8 +1,8 @@
-# Glow, Grab,
+# ProTask
 
 Deployed Link - https://glowgrab.netlify.app/
 
-## What is Glow Grab about?
+## What is ProTask about?
 
 Glow Grab is an E-commerce clothing website providing services including clothing categories in men, women, kids, and sneakers.
 This Project is built with React, TypeScript, Redux, Chakra UI library, and JSON server for backend network requests.
