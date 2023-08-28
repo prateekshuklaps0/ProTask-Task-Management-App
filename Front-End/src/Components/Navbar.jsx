@@ -27,22 +27,18 @@ import { Context } from "../Redux/Context";
 import { useDispatch } from "react-redux";
 import { LOGOUT } from "../Redux/Authentication/actionTypes";
 
-
-
 const Navbar = () => {
-
   const { token, setToken, loggedInUser, userNameLogged, setUserNameLogged } =
-  useContext(Context);
-  const navigate=useNavigate()
-  const dispatch = useDispatch()
-  const logout=()=>{
-    dispatch({type:LOGOUT})
+    useContext(Context);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const logout = () => {
+    dispatch({ type: LOGOUT });
     setToken("");
-    localStorage.clear()
-    navigate("/")
-  }
+    localStorage.clear();
+    navigate("/");
+  };
 
-  // const username = loggedInUser.name
   const location = useLocation();
   const [searchInp, setSearchInp] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
@@ -108,39 +104,38 @@ const Navbar = () => {
                 _focus={{ color: "greytext", borderColor: "greytext" }}
               />
             </InputGroup>
-
-
           </Box>
-
-          
         )}
 
         {/* Log In & Sign Up */}
         {token ? (
           <Box className="flex items-center space-x-5 ">
-          {/* <Text css={css.NameText} fontWeight="semibold">{`Hi ${userNameLogged} !`}</Text> */}
+            {/* <Text css={css.NameText} fontWeight="semibold">{`Hi ${userNameLogged} !`}</Text> */}
 
-          <Menu>
-            <MenuButton>
-              <Avatar
-                name={userNameLogged}
-                size={["xs", "xs", "sm"]}
-                bg="primary"
-                color="white"
-              />
-            </MenuButton>
-            <MenuList>
-              <Text css={css.NameText} pr="5px">{`Hi ${userNameLogged} !`}</Text>
-             <NavLink to='/profile'>
-              <MenuItem>
-                <Text  css={css.MenuTextsCss}>Profile</Text>
-              </MenuItem>
-              </NavLink>
-              <MenuItem onClick={logout}>
-                <Text  css={css.MenuTextsCss}>Log Out</Text>
-              </MenuItem>
-            </MenuList>
-          </Menu>
+            <Menu>
+              <MenuButton>
+                <Avatar
+                  name={userNameLogged}
+                  size={["xs", "xs", "sm"]}
+                  bg="primary"
+                  color="white"
+                />
+              </MenuButton>
+              <MenuList>
+                <Text
+                  css={css.NameText}
+                  pr="5px"
+                >{`Hi ${userNameLogged} !`}</Text>
+                <NavLink to="/profile">
+                  <MenuItem>
+                    <Text css={css.MenuTextsCss}>Profile</Text>
+                  </MenuItem>
+                </NavLink>
+                <MenuItem onClick={logout}>
+                  <Text css={css.MenuTextsCss}>Log Out</Text>
+                </MenuItem>
+              </MenuList>
+            </Menu>
           </Box>
         ) : (
           <Menu>
