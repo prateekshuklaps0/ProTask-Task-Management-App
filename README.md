@@ -58,11 +58,13 @@ DB_Url=Your-MongoDB-URL
 npm run server
 ```
 
-![Landing Page](./Front-End/src/Images/PageImages/LandingAbout.png)
+![Landing Normal](./PageImages/LandingNormal.jpg)
+![Landing Features](./PageImages/LandingFeatures.jpg)
+![Landing Workflow](./PageImages/LandingWorkflow.jpg)
+![Landing Price](./PageImages/LandingPrice.jpg)
+![Landing Normal](./PageImages/LandingNormal.jpg)
+![Landing Normal](./PageImages/LandingNormal.jpg)
 
-![Product Page](./src/images/WebsiteImages/ProductPage.png)
-
-![Single Product](./src/images/WebsiteImages/SingleProductPage.png)
 
 
 
