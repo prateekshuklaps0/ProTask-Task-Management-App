@@ -423,6 +423,194 @@ export const CardRightBox = css`
   }
 `;
 
+// Pricing Css ******************************
+export const PricingOuter = css`
+  margin: auto;
+  width: 85%;
+  margin-bottom: 50px;
+
+  @media (max-width: 992px) {
+  }
+  @media (max-width: 768px) {
+    margin-bottom: 40px;
+  }
+  @media (max-width: 480px) {
+    margin-bottom: 30px;
+  }
+`;
+export const PricingHeading = css`
+  font-size: 45px;
+  line-height: 1.33333;
+  margin-bottom: 15px;
+  margin-top: 20px;
+
+  @media (max-width: 992px) {
+  }
+  @media (max-width: 768px) {
+    font-size: 35px;
+    margin-bottom: 10px;
+    margin-top: 13px;
+  }
+  @media (max-width: 480px) {
+    font-size: 28px;
+    line-height: 1.22222;
+    margin-top: 0px;
+  }
+`;
+export const PricingSubHeading = css`
+  font-size: 28px;
+  line-height: 1.33333;
+  margin-bottom: 40px;
+
+  @media (max-width: 992px) {
+  }
+  @media (max-width: 768px) {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.2222;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 480px) {
+    line-height: 1.2222;
+    margin-bottom: 25px;
+    font-size: 16px;
+    font-weight: 400;
+  }
+`;
+export const ContainerPricing = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: 1280px) {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    place-items: center;
+  }
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+  @media (max-width: 768px) {
+    gap: 25px;
+  }
+  @media (max-width: 480px) {
+    gap: 10px;
+  }
+`;
+export const CardPricing = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24%;
+  height: 450px;
+  border-radius: 14px;
+  text-align: left;
+  padding: 20px 20px 0px;
+
+  @media (max-width: 1280px) {
+    width: auto;
+  }
+  @media (max-width: 992px) {
+  }
+  @media (max-width: 768px) {
+    border-radius: 10px;
+    padding: 15px 15px 0px;
+    height: 420px;
+  }
+  @media (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 6px;
+    padding: 10px 10px 0px;
+    height: 360px;
+  }
+`;
+export const PriceType = css`
+  font-size: 16px;
+  text-transform: uppercase;
+  margin: 0px;
+  line-height: 1.33333;
+
+  @media (max-width: 992px) {
+  }
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 1.2222;
+  }
+  @media (max-width: 480px) {
+    font-size: 13.5px;
+  }
+`;
+export const PriceCss = css`
+  font-size: 48px;
+  line-height: 1;
+  margin-bottom: 6px;
+  margin-top: 25px;
+
+  span {
+    font-size: 16px;
+    line-height: 1;
+    margin-left: 5px;
+  }
+
+  @media (max-width: 992px) {
+  }
+  @media (max-width: 768px) {
+    font-size: 35px;
+    margin-bottom: 6px;
+    margin-top: 20px;
+
+    span {
+      font-size: 14px;
+      margin-left: 3px;
+    }
+  }
+  @media (max-width: 480px) {
+    font-size: 26px;
+    margin-bottom: 3px;
+    margin-top: 15px;
+
+    span {
+      font-size: 13px;
+      margin-left: 3px;
+      margin-right: 3px;
+    }
+  }
+`;
+export const BelowPriceCss = css`
+  color: rgb(80, 95, 121);
+  font-size: 14px;
+  margin-bottom: 25px;
+
+  @media (max-width: 992px) {
+  }
+  @media (max-width: 768px) {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 480px) {
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+`;
+export const DiscriptionPriceCss = css`
+  font-size: 18px;
+  margin-bottom: 0px;
+
+  @media (max-width: 992px) {
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+`;
+
 /* 
 
 export const Temp = css`
