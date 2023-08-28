@@ -36,7 +36,7 @@ function App() {
           element={
             <PrivateRoute>
               <Home_2 />
-            </PrivateRoute>
+            </PrivateRoute> 
           }
         />
         <Route
