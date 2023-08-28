@@ -35,6 +35,7 @@ import SideBar from "../Components/SideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { get_projects } from "../Redux/ProjectReducer/action";
 import { get_tasks } from "../Redux/TaskReducer/action";
+import {store} from "../Redux/Store";
 
 const Home_2 = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -43,13 +44,18 @@ const Home_2 = () => {
   );
   const dispatch = useDispatch();
   const projects = useSelector((store) => store.projectReducer.projects);
-  const tasks = useSelector((store) => store.taskReducer.tasksbyUserId);
+  let tasks = useSelector((store) => store.taskReducer.tasksbyProId)
   
 
+  console.log(tasks)
+  
+ console.log(projects[0]?._id)
   const token = localStorage.getItem("token")
+
+  // console.log(token)
    
 
-  const projectId = "64e9df3be1cc48d363ff2686";
+  const projectId = projects[0]?._id || "64e9df3be1cc48d363ff2686";
 
   const todoTask = tasks?.find((el) => el.status === "todo");
 

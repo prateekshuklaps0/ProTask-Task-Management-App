@@ -48,7 +48,9 @@ export const add_task = (token, projectId, data) => (dispatch) => {
     dispatch({ type: TASK_LOADING })
     axios.post(
         "https://pro-task.onrender.com/tasks/addtask",
-        JSON.stringify(data),
+
+        data,
+
         {
             headers: {
                 Authorization: token,
