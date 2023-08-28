@@ -3,14 +3,13 @@ import React, { useContext, useState } from 'react';
 import { FaGripLines, FaAngleDoubleRight, FaEllipsisH } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { Context } from '../Redux/Context';
-import { update_task } from '../Redux/TaskReducer/action';
+import { get_tasks, update_task } from '../Redux/TaskReducer/action';
 
 export function TodoDrawer(el) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
     const dispatch = useDispatch()
     const { token } = useContext(Context)
-    // const token = localStorage.getItem("token")
 
     const [data, setData] = useState(el)
 
@@ -21,12 +20,10 @@ export function TodoDrawer(el) {
         })
     }
 
-    console.log("My token", token)
-
     const handleUpdate = () => {
         onClose()
         dispatch(update_task(token, data.projectId, data._id, data))
-
+        dispatch(get_tasks(token, data.projectId))
     }
 
     return (
