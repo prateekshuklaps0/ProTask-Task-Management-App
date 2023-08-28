@@ -62,8 +62,10 @@ npm run server
 ![Landing Features](./PageImages/LandingFeatures.jpg)
 ![Landing Workflow](./PageImages/LandingWorkflow.jpg)
 ![Landing Price](./PageImages/LandingPrice.jpg)
-![Landing Normal](./PageImages/LandingNormal.jpg)
-![Landing Normal](./PageImages/LandingNormal.jpg)
+![Home_Component](./PageImages/home_2.png)
+![Profile_Component](./PageImages/profile.png)
+![Dashboard_Component](./PageImages/Dashboard.png)
+
 
 
 
