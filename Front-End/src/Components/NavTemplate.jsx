@@ -8,9 +8,12 @@ import { BoardTemplate } from "./BoardTemplate";
 import { FaCalendarCheck, FaChevronDown } from "react-icons/fa";
 
 import Dashboard from "../Pages/Dashboard";
+import { useParams } from "react-router-dom";
 
 
 export const NavTemplate = () => {
+
+  const { id } = useParams()
 
   const handleDelete = () => {
 
@@ -26,7 +29,7 @@ export const NavTemplate = () => {
             <FaCalendarCheck size={"20px"} color="#8D6E63" />
 
             <Heading size={"sm"} color="gray.700">
-              Project-1
+              Money_Mentor
             </Heading>
             <Box ml={"10px"} >
 
@@ -48,9 +51,10 @@ export const NavTemplate = () => {
           </HStack>
           <Box>
             <AvatarGroup size="sm" max={2} mr={"20px"}>
-              <Avatar name="Ryan Florence" src="https://bit.ly/broken-link" />
-              <Avatar name="Segun Adebayo" src="https://bit.ly/broken-link" />
-              <Avatar name="Kent Dodds" src="https://bit.ly/broken-link" />
+              <Avatar name="Krishna Vaishnav" src="https://bit.ly/broken-link" />
+              <Avatar name="Mohnish Vishwakarma" src="https://bit.ly/broken-link" />
+              <Avatar name="Prateek Shukla" src="https://bit.ly/broken-link" />
+              <Avatar name="Harshit Kumar" src="https://bit.ly/broken-link" />
               <Avatar
                 name="Prosper Otemuyiwa"
                 src="https://bit.ly/broken-link"
