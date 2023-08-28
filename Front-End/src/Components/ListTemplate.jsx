@@ -6,7 +6,7 @@ import {
 import React, { useEffect, useState } from 'react'
 import { FaAngleRight, FaPlus, FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
-import { add_task, get_tasks } from '../Redux/TaskReducer/action';
+import { add_task, get_tasks, update_task } from '../Redux/TaskReducer/action';
 import { useParams } from 'react-router-dom';
 
 
@@ -24,7 +24,7 @@ export const ListTemplate = () => {
     const loading = useSelector((store) => store.taskReducer.loading)
     const token = localStorage.getItem("token")
     const { id } = useParams()
-    console.log("====", id)
+
 
     const [hoveredRow, setHoveredRow] = useState(null);
 
@@ -47,9 +47,11 @@ export const ListTemplate = () => {
 
 
     const handleStatusChange = (value, el) => {
-        el.status = value;
-        dispatch(update_task(token, el.projectId, el._id, { status: el.status }))
+        dispatch(update_task(token, id, el._id, { status: value }))
         dispatch(get_tasks(token, id))
+
+
+        console.log(el)
     }
 
 
@@ -71,6 +73,8 @@ export const ListTemplate = () => {
             console.log(formData);
             dispatch(add_task(token, id, formData))
             dispatch(get_tasks(token, id))
+
+
         };
 
         return (
@@ -184,7 +188,7 @@ export const ListTemplate = () => {
 
                                     </Td>
                                     <Td _hover={{ border: "1px solid #BDBDBD" }}>
-                                        <Select w={"150px"} placeholder='Change Status' backgroundColor={"gray.50"} border={"none"} value={el?.status} onChange={(e) => handleStatusChange(e.target.value, el)}>
+                                        <Select w={"150px"} placeholder='Change Status' backgroundColor={"gray.50"} border={"none"} value={el.status} onChange={(e) => handleStatusChange(e.target.value, el)}>
                                             <option value='todo'> To Do </option>
                                             <option value='inprogress'> In Progress </option>
                                             <option value='completed'> Completed </option>

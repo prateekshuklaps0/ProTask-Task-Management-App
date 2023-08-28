@@ -13,10 +13,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
   <ContextProvider >
     <BrowserRouter>
-    <Provider store={store}>
-      <ChakraProvider theme={Theme}>
-        <App />
-      </ChakraProvider>
+      <Provider store={store}>
+        <ChakraProvider theme={Theme}>
+          <App />
+        </ChakraProvider>
       </Provider>
     </BrowserRouter>
   </ContextProvider>

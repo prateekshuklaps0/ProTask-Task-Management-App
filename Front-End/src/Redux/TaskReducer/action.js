@@ -26,13 +26,12 @@ export const get_tasks = (token, projectId) => (dispatch) => {
 
 export const update_task = (token, projectId, id, data) => (dispatch) => {
     dispatch({ type: TASK_LOADING })
-    axios.patch(`https://pro-task.onrender.com/tasks/update/${id}`, JSON.stringify(data), {
+    axios.patch(`https://pro-task.onrender.com/tasks/update/${id}`, data, {
         headers: {
             Authorization: token,
             projectId: projectId
         }
     })
-
         .then((res) => {
             console.log("res data", res.data)
             dispatch({ type: UPDATE_TASK })
