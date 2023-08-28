@@ -40,14 +40,13 @@ export const BoardTemplate = () => {
     }
 
 
-    // const projectId = "64eb4039bf2e3093643b28b9";
-
-
     const handleSubmit = (e) => {
         e.preventDefault()
         onClose()
+        console.log("formdata", formData)
         dispatch(add_task(token, id, formData))
         dispatch(get_tasks(token, id))
+        setFormData(initData)
     }
 
 
@@ -69,7 +68,7 @@ export const BoardTemplate = () => {
     }, [id])
 
 
-    function addData() {
+    function addData(status) {
 
         return (
             <>
@@ -92,6 +91,15 @@ export const BoardTemplate = () => {
                                     value={formData.title}
                                     onChange={handleChange}
                                     type="text" placeholder='task' />
+                            </FormControl>
+
+                            <FormControl isRequired mb="15px">
+                                <FormLabel color={"gray.600"}>Task Name</FormLabel>
+                                <Select name="status" value={status} onChange={handleChange} type="text" >
+                                    <option value="todo">To Do</option>
+                                    <option value="inprogress">In Progress</option>
+                                    <option value="completed">Completed</option>
+                                </Select>
                             </FormControl>
 
                             <FormControl isRequired mb="15px">
@@ -131,7 +139,7 @@ export const BoardTemplate = () => {
                                 <Box
                                     ref={provided.innerRef}
                                     {...provided.droppableProps}
-                                    borderRadius={"10px"} w={"30%"} backgroundColor={"#FAFAFA"} p={"10px"}
+                                    borderRadius={"10px"} w={isSmallerThanBreakpoint ? "70%" : "30%"} backgroundColor={"#FAFAFA"} p={"10px"}
                                 >
                                     <VStack>
                                         <Text color={"red.600"} fontWeight={"bold"}  >To do</Text>
@@ -160,7 +168,7 @@ export const BoardTemplate = () => {
                                             </VStack>
                                             <Box m={"10px"}>
                                                 <HStack>
-                                                    <Box>{addData("Add new task...")}</Box>
+                                                    <Box>{addData("todo")}</Box>
                                                     <Text color={"gray.400"}>Add new task...</Text>
                                                 </HStack>
                                             </Box>
@@ -181,7 +189,7 @@ export const BoardTemplate = () => {
                                 <Box
                                     ref={provided.innerRef}
                                     {...provided.droppableProps}
-                                    borderRadius={"10px"} w={"30%"} backgroundColor={"#FAFAFA"} p={"10px"}
+                                    borderRadius={"10px"} w={isSmallerThanBreakpoint ? "70%" : "30%"} backgroundColor={"#FAFAFA"} p={"10px"}
                                 >
                                     <VStack>
                                         <Text color={"blue.600"} fontWeight={"bold"}>Doing</Text>
@@ -209,7 +217,7 @@ export const BoardTemplate = () => {
                                             </VStack>
                                             <Box m={"10px"}>
                                                 <HStack>
-                                                    <Box>{addData("Add new task...")}</Box>
+                                                    <Box>{addData("inprogress")}</Box>
                                                     <Text color={"gray.400"}>Add new task...</Text>
                                                 </HStack>
                                             </Box>
@@ -228,7 +236,7 @@ export const BoardTemplate = () => {
                                 <Box
                                     ref={provided.innerRef}
                                     {...provided.droppableProps}
-                                    borderRadius={"10px"} w={"30%"} backgroundColor={"#FAFAFA"} p={"10px"}
+                                    borderRadius={"10px"} w={isSmallerThanBreakpoint ? "70%" : "30%"} backgroundColor={"#FAFAFA"} p={"10px"}
                                 >
                                     <VStack>
                                         <Text color={"green.600"} fontWeight={"bold"}>Done</Text>
@@ -246,7 +254,7 @@ export const BoardTemplate = () => {
                                                                     index={index} key={index} m={"5px"} backgroundColor={"white"} p={"10px"} w={"95%"} borderRadius={"10px"} border={"1px solid #E2E8F0"}>
                                                                     <HStack display={"flex"} justifyContent={"space-between"}>
                                                                         <Text > {el.title}</Text>
-                                                                        <Box >{TodoDrawer()}</Box>
+                                                                        <Box >{TodoDrawer("completed")}</Box>
                                                                     </HStack>
                                                                 </Box>
                                                             )}
@@ -256,7 +264,7 @@ export const BoardTemplate = () => {
                                             </VStack>
                                             <Box m={"10px"}>
                                                 <HStack>
-                                                    <Box>{addData("Add new task...")}</Box>
+                                                    <Box>{addData()}</Box>
                                                     <Text color={"gray.400"}>Add new task...</Text>
                                                 </HStack>
                                             </Box>

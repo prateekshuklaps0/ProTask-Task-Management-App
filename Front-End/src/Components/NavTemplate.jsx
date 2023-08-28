@@ -2,23 +2,36 @@ import {
   VStack, Box, Image, Text, HStack, Heading, Tabs, TabList, TabPanels, Tab, TabPanel,
   AvatarGroup, Avatar, Menu, MenuButton, MenuItem, MenuList, Button
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { ListTemplate } from "./ListTemplate";
 import { BoardTemplate } from "./BoardTemplate";
 import { FaCalendarCheck, FaChevronDown } from "react-icons/fa";
 
 import Dashboard from "../Pages/Dashboard";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Context } from "../Redux/Context";
+import { get_projects } from "../Redux/ProjectReducer/action";
 
 
 export const NavTemplate = () => {
 
-  const { id } = useParams()
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { token, loggedInUser } = useContext(Context)
+  let projects = useSelector((store) => store.projectReducer.projects)
+
 
   const handleDelete = () => {
 
   }
 
+  useEffect(() => {
+    dispatch(get_projects(token))
+  }, [])
+
+
+  let currProject = projects?.filter((el) => el._id === id)
 
   return (
     <VStack>
@@ -29,7 +42,7 @@ export const NavTemplate = () => {
             <FaCalendarCheck size={"20px"} color="#8D6E63" />
 
             <Heading size={"sm"} color="gray.700">
-              Money_Mentor
+              {currProject[0]?.title ? currProject[0]?.title : "Project"}
             </Heading>
             <Box ml={"10px"} >
 
@@ -55,14 +68,6 @@ export const NavTemplate = () => {
               <Avatar name="Mohnish Vishwakarma" src="https://bit.ly/broken-link" />
               <Avatar name="Prateek Shukla" src="https://bit.ly/broken-link" />
               <Avatar name="Harshit Kumar" src="https://bit.ly/broken-link" />
-              <Avatar
-                name="Prosper Otemuyiwa"
-                src="https://bit.ly/broken-link"
-              />
-              <Avatar
-                name="Christian Nwamba"
-                src="https://bit.ly/broken-link"
-              />
             </AvatarGroup>
           </Box>
         </Box>
