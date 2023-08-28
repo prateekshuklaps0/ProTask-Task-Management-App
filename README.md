@@ -1,6 +1,6 @@
 # ProTask
 
-Deployed Link - https://glowgrab.netlify.app/
+Deployed Link - https://pro-task-gold.vercel.app/
 
 ## What is ProTask about?
 
