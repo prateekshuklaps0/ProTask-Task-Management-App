@@ -36,6 +36,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { get_projects } from "../Redux/ProjectReducer/action";
 import { get_tasks } from "../Redux/TaskReducer/action";
 import {store} from "../Redux/Store";
+import { useContext } from "react";
+import { Context } from "../Redux/Context";
 
 const Home_2 = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -46,7 +48,7 @@ const Home_2 = () => {
   const projects = useSelector((store) => store.projectReducer.projects);
   let tasks = useSelector((store) => store.taskReducer.tasksbyProId)
   
-
+  const {userNameLogged} = useContext(Context)
   console.log(tasks)
   
  console.log(projects[0]?._id)
@@ -116,7 +118,7 @@ const Home_2 = () => {
               {currentDay}, {currentMonth} {currentDate}
             </h3>
             <h2 className="text-lg font-medium sm:text-3xl md:text-3xl lg:text-3xl">
-              {greeting}, Mohnish
+              {greeting}, {userNameLogged?.split(' ')[0]}
             </h2>
 
             <div className=" mt-3 pr-2">
