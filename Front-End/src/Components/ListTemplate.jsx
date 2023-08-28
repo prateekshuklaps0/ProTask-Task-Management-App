@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react'
 import { FaAngleRight, FaPlus, FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { add_task, get_tasks } from '../Redux/TaskReducer/action';
+import { useParams } from 'react-router-dom';
 
 
 export const ListTemplate = () => {
@@ -21,10 +22,9 @@ export const ListTemplate = () => {
     const dispatch = useDispatch()
     let todosList = useSelector((store) => store.taskReducer.tasksbyProId)
     const loading = useSelector((store) => store.taskReducer.loading)
-    const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZWIzZmE3MjFkYmYyNjNkZDU3ODA4ZiIsImlhdCI6MTY5MzEzODg3OX0.RiWNg93eSuMeY4bS2f7yikFiNev9KVkGOqmHcIhinDw";
-
-    const projectId = "64eb4039bf2e3093643b28b9";
+    const token = localStorage.getItem("token")
+    const { id } = useParams()
+    console.log("====", id)
 
     const [hoveredRow, setHoveredRow] = useState(null);
 
@@ -42,14 +42,14 @@ export const ListTemplate = () => {
     };
 
     useEffect(() => {
-        dispatch(get_tasks(token, projectId))
-    }, [])
+        dispatch(get_tasks(token, id))
+    }, [id])
 
 
     const handleStatusChange = (value, el) => {
         el.status = value;
         dispatch(update_task(token, el.projectId, el._id, { status: el.status }))
-        dispatch(get_tasks(token, projectId))
+        dispatch(get_tasks(token, id))
     }
 
 
@@ -69,8 +69,8 @@ export const ListTemplate = () => {
             e.preventDefault();
             onClose();
             console.log(formData);
-            dispatch(add_task(token, projectId, formData))
-            dispatch(get_tasks(token, projectId))
+            dispatch(add_task(token, id, formData))
+            dispatch(get_tasks(token, id))
         };
 
         return (
