@@ -1,5 +1,6 @@
 import { AddIcon } from "@chakra-ui/icons";
 import React from "react";
+import { useSelector } from "react-redux";
 import {
   PieChart,
   Pie,
@@ -43,6 +44,14 @@ const Dashboard = () => {
     },
   ];
 
+  const tasks = useSelector((store) => store.taskReducer.tasksbyUserId);
+
+  let todo = tasks.filter((el) => el.status === 'todo');
+  let progress = tasks.filter((el) => el.status === 'inprogress');
+  let completed = tasks.filter((el) => el.status === 'completed');
+
+  // console.log(todo,progress, completed)
+
   const COLORS = ["#0088FE", "#FFBB28", "#00C49F"];
   return (
     <div>
@@ -54,19 +63,19 @@ const Dashboard = () => {
       <div className="grid mt-5 grid-flow-row gap-9 grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
         <div className="bg-white text-center text-xl pl-2 pt-3 pr-2 pb-10 shadow-lg rounded-md">
           <h1>Completed tasks</h1>
-          <h1 className="text-5xl pt-4">0</h1>
+          <h1 className="text-5xl pt-4">{completed.length}</h1>
         </div>
         <div className="bg-white text-center text-xl pl-2 pt-3 pr-2 pb-10 shadow-lg rounded-md">
           <h1>Incomplete tasks</h1>
-          <h1 className="text-5xl pt-4">0</h1>
+          <h1 className="text-5xl pt-4">{todo.length}</h1>
         </div>
         <div className="bg-white text-center text-xl pl-2 pt-3 pr-2 pb-10 shadow-lg rounded-md">
           <h1>Overdue tasks</h1>
-          <h1 className="text-5xl pt-4">0</h1>
+          <h1 className="text-5xl pt-4">{progress.length}</h1>
         </div>
         <div className="bg-white text-center text-xl pl-2 pt-3 pr-2 pb-10 shadow-lg rounded-md">
           <h1>Total tasks</h1>
-          <h1 className="text-5xl pt-4">0</h1>
+          <h1 className="text-5xl pt-4">{`${todo.length + completed.length + progress.length}`}</h1>
         </div>
       </div>
 
