@@ -58,7 +58,7 @@ DB_Url=Your-MongoDB-URL
 npm run server
 ```
 
-![Landing Page](./src/images/WebsiteImages/LandingPage.png)
+![Landing Page](./Front-End/src/Images/PageImages/LandingAbout.png)
 
 ![Product Page](./src/images/WebsiteImages/ProductPage.png)
 
