@@ -110,8 +110,6 @@ const Navbar = () => {
         {/* Log In & Sign Up */}
         {token ? (
           <Box className="flex items-center space-x-5 ">
-            {/* <Text css={css.NameText} fontWeight="semibold">{`Hi ${userNameLogged} !`}</Text> */}
-
             <Menu>
               <MenuButton>
                 <Avatar
