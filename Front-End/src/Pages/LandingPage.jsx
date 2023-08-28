@@ -155,6 +155,51 @@ const LandingPage = () => {
         </Box>
       </Box>
 
+      {/* Pricing */}
+      <Box w="100%" textAlign="center" id="pricing">
+        <Box css={css.PricingOuter}>
+          <Text css={css.PricingHeading}>ProTask priced your way</Text>
+          <Text css={css.PricingSubHeading}>
+            Trusted by millions, Trello powers teams all around the world
+          </Text>
+          <Box css={css.ContainerPricing}>
+            {PricingData.map((item, ind) => (
+              <Box
+                gridColumn={[
+                  "auto",
+                  "auto",
+                  "auto",
+                  ind == 3 ? 2 : "auto",
+                  "auto",
+                ]}
+                bg="greybg"
+                css={css.CardPricing}
+                key={item.topText + ind}
+              >
+                <Box>
+                  <Text css={css.PriceType}>{item.topText}</Text>
+                  <Text css={css.PriceCss}>
+                    <span>$</span>
+                    {item.price}
+                    <span>USD</span>
+                  </Text>
+                  <Text css={css.BelowPriceCss}>{item.belowPriceText}</Text>
+                  <Text css={css.DiscriptionPriceCss}>{item.disc}</Text>
+                </Box>
+                <Button
+                  mb={["20px", "30px", "40px", "none"]}
+                  bg="blacktext"
+                  _hover={{ bg: "primary" }}
+                  css={css.TopGetStartedBtn}
+                >
+                  {item.btnText}
+                </Button>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      </Box>
+
       {/* Footer */}
       <Footer />
     </Box>
@@ -252,5 +297,37 @@ const WorkFlowData = [
     ],
     btnText: "Explore strategic planning",
     img: StrategicImg,
+  },
+];
+
+const PricingData = [
+  {
+    topText: "Free",
+    price: 0,
+    belowPriceText: "Free for your whole team",
+    disc: "For individuals or teams looking to organize any project.",
+    btnText: "Get started",
+  },
+  {
+    topText: "Standard",
+    price: 5,
+    belowPriceText: "Per user/month if billed annually ($6 billed monthly)",
+    disc: "For small teams that need to manage work and scale collaboration.",
+    btnText: "Sign up now",
+  },
+  {
+    topText: "Premium",
+    price: 10,
+    belowPriceText: "Per user/month if billed annually ($12.50 billed monthly)",
+    disc: "For teams that need to track and visualize multiple projects in several ways, including boards, timelines, calendars, etc.",
+    btnText: "Try for free",
+  },
+  {
+    topText: "Enterprise",
+    price: 17.5,
+    belowPriceText:
+      "Per user/month - billed annually ($210.00 annual price per user)",
+    disc: "For organizations that need to connect work across teams with more security and controls.",
+    btnText: "Contact Sales",
   },
 ];
