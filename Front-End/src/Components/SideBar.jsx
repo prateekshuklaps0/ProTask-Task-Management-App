@@ -39,9 +39,8 @@ const SideBar = () => {
   return (
     <div className="hidden  sm:hidden md:hidden lg:flex xl:flex h-screen text-md   ">
       <div
-        className={`${
-          isOpen ? "w-48" : "w-0"
-        } bg-white min-h-screen border-r border-t overflow-hidden transition-width duration-500`}
+        className={`${isOpen ? "w-48" : "w-0"
+          } bg-white min-h-screen border-r border-t overflow-hidden transition-width duration-500`}
       >
         {/* <button onClick={toggleSidebar} className="flex ml-auto mr-3">❌</button> */}
         <div className="p-2">
@@ -72,7 +71,7 @@ const SideBar = () => {
               <MdAddBox fontWeight={"bold"} cursor="pointer" color="gray" />
             </li>
             {projects.map((el) => (
-              <NavLink to={`/temp/:${el._id}`}>
+              <NavLink to={`/temp/${el._id}`}>
                 <li className="flex items-center space-x-2 mt-3 pl-2 pt-1 pr-1 pb-1 box-border cursor-pointer hover:bg-slate-200 rounded-md active:bg-slate-50">
                   <BiSolidSquareRounded className="text-orange-300" />
                   <span>{el.title}</span>

@@ -10,13 +10,15 @@ import { useMediaQuery } from '@chakra-ui/react'
 import { TodoDrawer } from './TodoDrawer';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
-import { get_tasks } from '../Redux/TaskReducer/action';
+import { add_task, get_tasks } from '../Redux/TaskReducer/action';
 import { Context } from '../Redux/Context';
+import { useParams } from 'react-router-dom';
 
 const initData = {
     title: "",
     description: "",
-    dueDate: ""
+    dueDate: "",
+    status: "todo"
 }
 
 export const BoardTemplate = () => {
@@ -24,7 +26,8 @@ export const BoardTemplate = () => {
     const [formData, setFormData] = useState(initData);
     const [isSmallerThanBreakpoint] = useMediaQuery('(max-width: 768px)')
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { token } = useContext(Context)
+    const token = localStorage.getItem("token")
+    const { id } = useParams()
 
     const dispatch = useDispatch()
     let tasks = useSelector(store => store.taskReducer.tasksbyProId)
@@ -37,13 +40,14 @@ export const BoardTemplate = () => {
     }
 
 
-    const projectId = "64eb4039bf2e3093643b28b9";
+    // const projectId = "64eb4039bf2e3093643b28b9";
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
         onClose()
-        dispatch(add_task(token, projectId, formData))
-        dispatch(get_tasks(token, projectId))
+        dispatch(add_task(token, id, formData))
+        dispatch(get_tasks(token, id))
     }
 
 
@@ -60,10 +64,9 @@ export const BoardTemplate = () => {
     }
 
 
-
     useEffect(() => {
-        dispatch(get_tasks(token, projectId))
-    }, [])
+        dispatch(get_tasks(token, id))
+    }, [id])
 
 
     function addData() {
@@ -103,7 +106,7 @@ export const BoardTemplate = () => {
 
                         <ModalFooter>
                             <Button variant={"solid"} color={"gray.700"} _hover={{ backgroundColor: "#558B2F", color: "white" }}
-                                backgroundColor={"#DCEDC8"} mr={3} onClick={() => handleSubmit()}  >
+                                backgroundColor={"#DCEDC8"} mr={3} onClick={handleSubmit}  >
                                 ADD
                             </Button>
                         </ModalFooter>
